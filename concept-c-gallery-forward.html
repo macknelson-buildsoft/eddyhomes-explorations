@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eddy Homes — Every Detail, Yours</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,300&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crimson: #821517;
+      --blue: #2BA6CB;
+      --gray-dark: #5B5B5B;
+      --gray-light: #E4E4E4;
+      --black: #1a1a1a;
+      --white: #fff;
+      --charcoal: #181818;
+      --warm-off: #f7f4ef;
+      --nav-h: 72px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV — transparent over hero ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+      gap: 20px;
+      transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+      background: transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(26,26,26,0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-monogram {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 32px;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .nav-wordmark {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.4;
+    }
+
+    .market-toggle {
+      display: flex;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 3px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .market-btn {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,0.65);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .market-btn.active {
+      background: rgba(255,255,255,0.18);
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-left: auto;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-realtors {
+      font-size: 10px !important;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white) !important;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 2px;
+      padding: 6px 14px;
+      text-decoration: none;
+      transition: all 0.2s !important;
+    }
+
+    .nav-realtors:hover {
+      background: rgba(255,255,255,0.12) !important;
+      border-color: var(--white) !important;
+    }
+
+    .nav-search {
+      font-size: 18px;
+      cursor: pointer;
+      color: rgba(255,255,255,0.7);
+      background: none;
+      border: none;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+
+    .nav-search:hover { color: var(--white); }
+
+    /* ── HERO — wide interior gradient ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      /* Warm interior — cream oak cabinetry, marble, warm light */
+      background: linear-gradient(
+        120deg,
+        #f0e8d8 0%,
+        #e8d5b8 15%,
+        #d4b896 30%,
+        #c4a57c 42%,
+        #b8956a 52%,
+        #a88660 62%,
+        #927050 74%,
+        #7a5c40 85%,
+        #5e4030 100%
+      );
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px;
+    }
+
+    /* Warm window light from right */
+    .hero-light {
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 55%;
+      height: 80%;
+      background: radial-gradient(
+        ellipse at 70% 30%,
+        rgba(255,240,200,0.45) 0%,
+        rgba(255,220,150,0.2) 35%,
+        transparent 65%
+      );
+      pointer-events: none;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(20,16,12,0.9) 0%,
+        rgba(20,16,12,0.55) 35%,
+        rgba(20,16,12,0.12) 65%,
+        transparent 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 72px 80px;
+      max-width: 820px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-sub-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-sub-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: rgba(255,255,255,0.35);
+    }
+
+    .hero-headline {
+      font-size: clamp(44px, 6vw, 82px);
+      font-weight: 200;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      font-weight: 200;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-tagline {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 36px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-cta-pair {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cta-primary {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 15px 36px;
+      background: var(--crimson);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .cta-primary:hover {
+      background: #6a1012;
+      transform: translateY(-1px);
+    }
+
+    .cta-text-link {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      padding-bottom: 2px;
+    }
+
+    .cta-text-link:hover {
+      color: var(--white);
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      right: 72px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      writing-mode: vertical-rl;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: rgba(255,255,255,0.2);
+      animation: scrollPulse 2.5s ease infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(1); transform-origin: top; }
+      50% { transform: scaleY(0.4); transform-origin: top; opacity: 0.5; }
+    }
+
+    /* ── MASONRY GALLERY ── */
+    .gallery-section {
+      padding: 0;
+      background: var(--charcoal);
+    }
+
+    .gallery-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 52px 56px 36px;
+    }
+
+    .gallery-header h2 {
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .gallery-header p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      text-align: right;
+      max-width: 240px;
+    }
+
+    .masonry {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 280px 280px;
+      gap: 3px;
+      padding: 0 3px 3px;
+    }
+
+    .masonry-cell {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .masonry-cell:first-child {
+      grid-row: span 2;
+    }
+
+    .masonry-cell-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.6s ease;
+    }
+
+    .masonry-cell:hover .masonry-cell-bg {
+      transform: scale(1.04);
+    }
+
+    .cell-kitchen .masonry-cell-bg {
+      background: linear-gradient(
+        145deg,
+        #f2e8d8 0%,
+        #e0ccb0 25%,
+        #c8a878 50%,
+        #b08860 70%,
+        #8a6840 90%
+      );
+    }
+
+    .cell-great-room .masonry-cell-bg {
+      background: linear-gradient(
+        130deg,
+        #e8e0d4 0%,
+        #d0c4b2 20%,
+        #b4a490 40%,
+        #9a8878 60%,
+        #7a6c60 80%,
+        #5c5248 100%
+      );
+    }
+
+    .cell-owners .masonry-cell-bg {
+      background: linear-gradient(
+        155deg,
+        #f5f0e8 0%,
+        #e8dfd0 30%,
+        #d4c9b8 55%,
+        #bcad9c 75%,
+        #9a8c7a 100%
+      );
+    }
+
+    .cell-staircase .masonry-cell-bg {
+      background: linear-gradient(
+        120deg,
+        #4a4540 0%,
+        #6a6258 25%,
+        #8a8070 50%,
+        #aaa090 72%,
+        #c8c0b0 90%
+      );
+    }
+
+    .cell-exterior .masonry-cell-bg {
+      background: linear-gradient(
+        140deg,
+        #3d4a38 0%,
+        #5a6e50 22%,
+        #7a9068 45%,
+        #9aaa88 65%,
+        #7a8a60 80%,
+        #5a6840 100%
+      );
+    }
+
+    .masonry-cell-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(20,16,12,0.72) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .masonry-cell:hover .masonry-cell-overlay { opacity: 1; }
+
+    .masonry-cell-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 24px;
+      z-index: 2;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: all 0.35s;
+    }
+
+    .masonry-cell:hover .masonry-cell-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cell-room-name {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .cell-room-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ── EH STUDIO FEATURE ── */
+    .studio-section {
+      background: var(--charcoal);
+      padding: 100px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .studio-section::before {
+      content: 'EH STUDIO';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(80px, 14vw, 180px);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.025);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .studio-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .studio-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 64px;
+    }
+
+    .studio-header-left h2 {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 200;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .studio-header-left h2 em {
+      font-style: italic;
+      font-weight: 200;
+    }
+
+    .studio-header-left .studio-teaser {
+      font-size: 15px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .studio-header-right {
+      text-align: right;
+    }
+
+    .studio-header-right p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 1.65;
+    }
+
+    .studio-header-right .studio-ncidq {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .studio-header-right .studio-ncidq::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--blue);
+    }
+
+    /* Collection cards */
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .collection-card {
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.3s, transform 0.25s;
+    }
+
+    .collection-card:hover {
+      border-color: rgba(255,255,255,0.3);
+      transform: translateY(-3px);
+    }
+
+    .collection-card-img {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .coll-traditional .collection-card-img {
+      background: linear-gradient(
+        140deg,
+        #e8ddd0 0%,
+        #d4c4b0 30%,
+        #c0a890 55%,
+        #a88c70 75%,
+        #8a7258 100%
+      );
+    }
+
+    .coll-transitional .collection-card-img {
+      background: linear-gradient(
+        135deg,
+        #e4e0d8 0%,
+        #ccc8c0 28%,
+        #b0ac9e 52%,
+        #989484 72%,
+        #7e7c70 90%
+      );
+    }
+
+    .coll-contemporary .collection-card-img {
+      background: linear-gradient(
+        130deg,
+        #d8d4d0 0%,
+        #b8b2ac 30%,
+        #989490 56%,
+        #787478 78%,
+        #545058 100%
+      );
+    }
+
+    .collection-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(24,24,24,0.5) 0%, transparent 60%);
+    }
+
+    .collection-card-body {
+      padding: 24px 24px 28px;
+    }
+
+    .collection-num {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 8px;
+    }
+
+    .collection-name {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .collection-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.48);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .collection-link {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+
+    .collection-card:hover .collection-link { gap: 10px; }
+
+    .studio-cta-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 52px;
+    }
+
+    .btn-studio {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 16px 42px;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    .btn-studio:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.7);
+    }
+
+    /* ── QMI STRIP ── */
+    .qmi-strip {
+      background: var(--black);
+      border-top: 3px solid var(--crimson);
+      padding: 52px 56px;
+    }
+
+    .qmi-strip-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .qmi-strip-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .qmi-pulse-badge {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--crimson);
+      padding: 5px 12px 5px 10px;
+      border-radius: 2px;
+    }
+
+    .qmi-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--white);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.35); }
+    }
+
+    .qmi-pulse-badge span {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .qmi-strip-title {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .qmi-strip-view-all {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      padding-bottom: 1px;
+      transition: all 0.2s;
+    }
+
+    .qmi-strip-view-all:hover {
+      color: var(--white);
+      border-color: var(--white);
+    }
+
+    .qmi-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .qmi-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 3px;
+      overflow: hidden;
+      transition: all 0.25s;
+    }
+
+    .qmi-card:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.18);
+      transform: translateY(-2px);
+    }
+
+    .qmi-card-thumb {
+      height: 160px;
+      position: relative;
+    }
+
+    .qmi-card-thumb.bg-a {
+      background: linear-gradient(140deg, #4a3728 0%, #7b6452 40%, #9a8070 70%, #7c6858 100%);
+    }
+
+    .qmi-card-thumb.bg-b {
+      background: linear-gradient(148deg, #384838 0%, #586a56 38%, #789076 65%, #909e8e 88%);
+    }
+
+    .qmi-card-thumb.bg-c {
+      background: linear-gradient(138deg, #3e3a58 0%, #585580 40%, #787898 68%, #9898b0 100%);
+    }
+
+    .qmi-move-in-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: var(--crimson);
+      color: var(--white);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    .qmi-card-body {
+      padding: 20px 20px 18px;
+    }
+
+    .qmi-name {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+
+    .qmi-loc {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 14px;
+    }
+
+    .qmi-specs {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .qmi-spec {
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .qmi-spec strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .qmi-card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .qmi-price { font-size: 16px; font-weight: 600; color: var(--white); }
+
+    .qmi-cta {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: var(--crimson);
+      color: var(--white);
+      padding: 8px 16px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .qmi-cta:hover { background: #6a1012; }
+
+    /* ── COMMUNITY MAP PLACEHOLDER ── */
+    .community-section {
+      background: var(--warm-off);
+      padding: 80px 56px;
+    }
+
+    .community-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .community-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .community-header h2 {
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    .community-header a {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(130,21,23,0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .community-header a:hover { border-color: var(--crimson); }
+
+    .community-map-wrap {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .community-map-placeholder {
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16/9;
+      background: linear-gradient(
+        165deg,
+        #d4dde8 0%,
+        #c0cdd8 25%,
+        #a8b8c8 50%,
+        #90a4b6 72%,
+        #7890a4 100%
+      );
+    }
+
+    .map-overlay-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .map-overlay-text .map-icon {
+      font-size: 36px;
+      opacity: 0.35;
+    }
+
+    .map-overlay-text p {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(30,50,80,0.55);
+    }
+
+    /* Map pins */
+    .map-pin {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      transition: transform 0.2s;
+    }
+
+    .map-pin:hover { transform: scale(1.15); }
+    .map-pin.pin-pgh { background: var(--crimson); }
+    .map-pin.pin-phi { background: var(--blue); }
+
+    .community-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .community-list-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 18px;
+      background: var(--white);
+      border-radius: 3px;
+      border: 1px solid var(--gray-light);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .community-list-item:hover {
+      border-color: var(--crimson);
+      background: rgba(130,21,23,0.02);
+    }
+
+    .comm-market-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .comm-market-dot.pgh { background: var(--crimson); }
+    .comm-market-dot.phi { background: var(--blue); }
+
+    .comm-info { flex: 1; }
+
+    .comm-name {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 2px;
+    }
+
+    .comm-detail {
+      font-size: 11px;
+      color: var(--gray-dark);
+    }
+
+    .comm-price {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--crimson);
+      white-space: nowrap;
+    }
+
+    /* ── WHY EDDY TRUST ── */
+    .why-eddy {
+      background: var(--white);
+      padding: 80px 56px;
+      border-top: 1px solid var(--gray-light);
+    }
+
+    .why-eddy-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .why-eddy-top {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .why-eddy-top h2 {
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    .why-eddy-top p {
+      font-size: 15px;
+      color: var(--gray-dark);
+      font-weight: 300;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .why-pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .pillar {
+      background: var(--warm-off);
+      padding: 40px 32px;
+      transition: background 0.2s;
+    }
+
+    .pillar:hover { background: var(--gray-light); }
+
+    .pillar-num {
+      font-size: 48px;
+      font-weight: 200;
+      letter-spacing: -0.02em;
+      color: var(--crimson);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .pillar-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+
+    .pillar-desc {
+      font-size: 13px;
+      color: var(--gray-dark);
+      line-height: 1.6;
+    }
+
+    /* Awards row */
+    .awards-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      padding: 48px 0 0;
+      flex-wrap: wrap;
+    }
+
+    .award-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .award-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 2px solid var(--gray-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .award-name {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray-dark);
+      max-width: 110px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      padding: 64px 56px 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr 1fr 1fr;
+      gap: 52px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 32px;
+    }
+
+    .footer-brand-logo {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 52px;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .footer-brand-wm {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 18px;
+    }
+
+    .footer-brand-tl {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      font-style: italic;
+      font-weight: 300;
+      margin-bottom: 22px;
+    }
+
+    .footer-realtor-btn {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      background: var(--crimson);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+      margin-bottom: 12px;
+    }
+
+    .footer-realtor-btn:hover { background: #6a1012; }
+
+    .footer-col h4 {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+
+    .footer-col a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--white); }
+
+    .footer-market-head {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    .market-head-pgh { color: var(--crimson); }
+    .market-head-phi { color: var(--blue); }
+
+    .footer-bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-legal-text {
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .footer-phone-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .footer-phone-link:hover { color: var(--white); }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .soc-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .soc-icon:hover {
+      border-color: rgba(255,255,255,0.45);
+      color: var(--white);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .studio-header { grid-template-columns: 1fr; gap: 32px; }
+      .studio-header-right { text-align: left; }
+      .studio-header-right .studio-ncidq { justify-content: flex-start; }
+      .collection-grid { grid-template-columns: 1fr 1fr; }
+      .why-pillars { grid-template-columns: 1fr 1fr; }
+      .community-map-wrap { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; gap: 12px; }
+      .nav-links { display: none; }
+      .hero-content { padding: 0 24px 60px; }
+      .hero-scroll { display: none; }
+      .gallery-header { flex-direction: column; align-items: flex-start; gap: 10px; padding: 36px 20px 24px; }
+      .masonry { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .masonry-cell:first-child { grid-row: span 1; }
+      .studio-section { padding: 64px 20px; }
+      .collection-grid { grid-template-columns: 1fr; }
+      .qmi-strip { padding: 40px 20px; }
+      .qmi-cards { grid-template-columns: 1fr; }
+      .community-section { padding: 56px 20px; }
+      .why-eddy { padding: 56px 20px; }
+      .why-pillars { grid-template-columns: 1fr; }
+      footer { padding: 48px 20px 32px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom-row { flex-direction: column; align-items: flex-start; }
+      .masonry-cell-label { opacity: 1; transform: translateY(0); }
+      .masonry-cell-overlay { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">
+    <span class="nav-monogram">𝓔𝓗</span>
+    <span class="nav-wordmark">Eddy<br>Homes</span>
+  </a>
+  <div class="market-toggle">
+    <button class="market-btn active" onclick="setMarket('pittsburgh', this)">Pittsburgh</button>
+    <button class="market-btn" onclick="setMarket('philadelphia', this)">Philadelphia</button>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Find a Home</a></li>
+    <li><a href="#">Floor Plans</a></li>
+    <li><a href="#">EH Studio</a></li>
+    <li><a href="#">Why Eddy</a></li>
+    <li><a href="#">Resources</a></li>
+    <li><a class="nav-realtors" href="#">For Realtors</a></li>
+  </ul>
+  <button class="nav-search" aria-label="Search">&#9906;</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-light"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-sub-eyebrow">Pittsburgh &amp; Philadelphia &nbsp;·&nbsp; Since 1971</p>
+    <h1 class="hero-headline">Every detail,<br><em>yours.</em></h1>
+    <p class="hero-tagline">50 years of Pittsburgh craftsmanship. Designed for you.</p>
+    <div class="hero-cta-pair">
+      <a href="#" class="cta-primary">Explore Floor Plans</a>
+      <a href="#qmi" class="cta-text-link">See Quick Move-In Homes →</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MASONRY GALLERY -->
+<section class="gallery-section">
+  <div class="gallery-header">
+    <h2>Designed in every room</h2>
+    <p>Every detail is yours to choose. Start with a collection, then make it your own.</p>
+  </div>
+  <div class="masonry">
+
+    <!-- Large: Kitchen (spans 2 rows) -->
+    <div class="masonry-cell cell-kitchen">
+      <div class="masonry-cell-bg"></div>
+      <div class="masonry-cell-overlay"></div>
+      <div class="masonry-cell-label">
+        <div class="cell-room-name">Kitchen</div>
+        <div class="cell-room-sub">Quartz countertops · Custom cabinetry · Thermador</div>
+      </div>
+    </div>
+
+    <!-- Great Room -->
+    <div class="masonry-cell cell-great-room">
+      <div class="masonry-cell-bg"></div>
+      <div class="masonry-cell-overlay"></div>
+      <div class="masonry-cell-label">
+        <div class="cell-room-name">Great Room</div>
+        <div class="cell-room-sub">Coffered ceilings · Stone fireplace · Built-ins</div>
+      </div>
+    </div>
+
+    <!-- Owner's Suite -->
+    <div class="masonry-cell cell-owners">
+      <div class="masonry-cell-bg"></div>
+      <div class="masonry-cell-overlay"></div>
+      <div class="masonry-cell-label">
+        <div class="cell-room-name">Owner's Suite</div>
+        <div class="cell-room-sub">Tray ceiling · Walk-in closet · Spa bath</div>
+      </div>
+    </div>
+
+    <!-- Staircase -->
+    <div class="masonry-cell cell-staircase">
+      <div class="masonry-cell-bg"></div>
+      <div class="masonry-cell-overlay"></div>
+      <div class="masonry-cell-label">
+        <div class="cell-room-name">Staircase</div>
+        <div class="cell-room-sub">Open rail · White oak treads · Wrought iron balusters</div>
+      </div>
+    </div>
+
+    <!-- Exterior -->
+    <div class="masonry-cell cell-exterior">
+      <div class="masonry-cell-bg"></div>
+      <div class="masonry-cell-overlay"></div>
+      <div class="masonry-cell-label">
+        <div class="cell-room-name">Exterior</div>
+        <div class="cell-room-sub">Stone facade · 3-car garage · Covered porch</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EH STUDIO FEATURE -->
+<section class="studio-section">
+  <div class="studio-inner">
+    <div class="studio-header">
+      <div class="studio-header-left">
+        <h2>Three collections.<br><em>One starting point.</em></h2>
+        <p class="studio-teaser">EH Studio is where your floor plan becomes your home. Choose a design collection, then customize everything — from hardwood species to hardware finishes — with guidance from our in-house design team.</p>
+      </div>
+      <div class="studio-header-right">
+        <p>Our design team holds NCIDQ accreditation — the same standard required by licensed interior designers — so you get professional expertise, not just a showroom floor.</p>
+        <span class="studio-ncidq">NCIDQ-Accredited Design Team</span>
+      </div>
+    </div>
+
+    <div class="collection-grid">
+      <div class="collection-card coll-traditional">
+        <div class="collection-card-img"></div>
+        <div class="collection-card-body">
+          <div class="collection-num">01</div>
+          <div class="collection-name">Traditional</div>
+          <p class="collection-desc">Timeless millwork, raised panel cabinetry, and warm wood tones. A language that never goes out of style — refined and deeply considered.</p>
+          <a href="#" class="collection-link">Explore Collection →</a>
+        </div>
+      </div>
+      <div class="collection-card coll-transitional">
+        <div class="collection-card-img"></div>
+        <div class="collection-card-body">
+          <div class="collection-num">02</div>
+          <div class="collection-name">Transitional</div>
+          <p class="collection-desc">Where classic proportions meet clean lines. Neutral palettes with thoughtful contrast — versatile enough to grow with your taste.</p>
+          <a href="#" class="collection-link">Explore Collection →</a>
+        </div>
+      </div>
+      <div class="collection-card coll-contemporary">
+        <div class="collection-card-img"></div>
+        <div class="collection-card-body">
+          <div class="collection-num">03</div>
+          <div class="collection-name">Contemporary</div>
+          <p class="collection-desc">Flat-front cabinetry, matte finishes, and crisp geometry. For buyers who want a home that feels unmistakably of the moment.</p>
+          <a href="#" class="collection-link">Explore Collection →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="studio-cta-row">
+      <a href="#" class="btn-studio">Visit EH Studio &nbsp;→</a>
+    </div>
+  </div>
+</section>
+
+<!-- QMI STRIP -->
+<section class="qmi-strip" id="qmi">
+  <div class="qmi-strip-inner">
+    <div class="qmi-strip-top">
+      <div class="qmi-pulse-badge">
+        <span class="qmi-dot"></span>
+        <span>Quick Move-In</span>
+      </div>
+      <span class="qmi-strip-title">Move in this season</span>
+      <a href="#" class="qmi-strip-view-all">All Homes →</a>
+    </div>
+    <div class="qmi-cards">
+      <div class="qmi-card">
+        <div class="qmi-card-thumb bg-a">
+          <span class="qmi-move-in-tag">Move In: Aug 2026</span>
+        </div>
+        <div class="qmi-card-body">
+          <div class="qmi-name">The Bowmore</div>
+          <div class="qmi-loc">Woodbriar &nbsp;·&nbsp; Peters Township, PA &nbsp;·&nbsp; Peters Twp SD</div>
+          <div class="qmi-specs">
+            <div class="qmi-spec"><strong>4</strong>Beds</div>
+            <div class="qmi-spec"><strong>3.5</strong>Baths</div>
+            <div class="qmi-spec"><strong>3,840</strong>Sq Ft</div>
+          </div>
+          <div class="qmi-card-foot">
+            <span class="qmi-price">$1,149,900</span>
+            <a href="#" class="qmi-cta">View Home</a>
+          </div>
+        </div>
+      </div>
+      <div class="qmi-card">
+        <div class="qmi-card-thumb bg-b">
+          <span class="qmi-move-in-tag">Move In: Sep 2026</span>
+        </div>
+        <div class="qmi-card-body">
+          <div class="qmi-name">The Rosebank</div>
+          <div class="qmi-loc">Autumn Grove &nbsp;·&nbsp; North Allegheny, PA &nbsp;·&nbsp; North Allegheny SD</div>
+          <div class="qmi-specs">
+            <div class="qmi-spec"><strong>4</strong>Beds</div>
+            <div class="qmi-spec"><strong>3</strong>Baths</div>
+            <div class="qmi-spec"><strong>3,210</strong>Sq Ft</div>
+          </div>
+          <div class="qmi-card-foot">
+            <span class="qmi-price">$879,900</span>
+            <a href="#" class="qmi-cta">View Home</a>
+          </div>
+        </div>
+      </div>
+      <div class="qmi-card">
+        <div class="qmi-card-thumb bg-c">
+          <span class="qmi-move-in-tag">Move In: Oct 2026</span>
+        </div>
+        <div class="qmi-card-body">
+          <div class="qmi-name">The Windsor</div>
+          <div class="qmi-loc">Spring Way &nbsp;·&nbsp; Seneca Valley, PA &nbsp;·&nbsp; Seneca Valley SD</div>
+          <div class="qmi-specs">
+            <div class="qmi-spec"><strong>5</strong>Beds</div>
+            <div class="qmi-spec"><strong>4.5</strong>Baths</div>
+            <div class="qmi-spec"><strong>4,120</strong>Sq Ft</div>
+          </div>
+          <div class="qmi-card-foot">
+            <span class="qmi-price">$1,079,900</span>
+            <a href="#" class="qmi-cta">View Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY MAP -->
+<section class="community-section">
+  <div class="community-inner">
+    <div class="community-header">
+      <h2>Find your community</h2>
+      <a href="#">View all communities →</a>
+    </div>
+    <div class="community-map-wrap">
+      <div class="community-map-placeholder">
+        <div class="map-overlay-text">
+          <span class="map-icon">🗺</span>
+          <p>Interactive Community Map</p>
+        </div>
+        <!-- Simulated map pins -->
+        <div class="map-pin pin-pgh" style="top:42%;left:28%;" title="Woodbriar">WB</div>
+        <div class="map-pin pin-pgh" style="top:28%;left:35%;" title="Autumn Grove">AG</div>
+        <div class="map-pin pin-pgh" style="top:55%;left:22%;" title="Spring Way">SW</div>
+        <div class="map-pin pin-pgh" style="top:38%;left:42%;" title="Highland Reserve">HR</div>
+        <div class="map-pin pin-phi" style="top:35%;left:72%;" title="Creekside at Malvern">CM</div>
+        <div class="map-pin pin-phi" style="top:52%;left:78%;" title="Fairfield Estates">FE</div>
+        <div class="map-pin pin-phi" style="top:24%;left:82%;" title="The Reserve at Devon">RD</div>
+      </div>
+      <div class="community-list">
+        <a href="#" class="community-list-item">
+          <span class="comm-market-dot pgh"></span>
+          <div class="comm-info">
+            <div class="comm-name">Woodbriar</div>
+            <div class="comm-detail">Peters Township &nbsp;·&nbsp; Peters Twp SD</div>
+          </div>
+          <span class="comm-price">From $824K</span>
+        </a>
+        <a href="#" class="community-list-item">
+          <span class="comm-market-dot pgh"></span>
+          <div class="comm-info">
+            <div class="comm-name">Autumn Grove</div>
+            <div class="comm-detail">North Allegheny &nbsp;·&nbsp; North Allegheny SD</div>
+          </div>
+          <span class="comm-price">From $699K</span>
+        </a>
+        <a href="#" class="community-list-item">
+          <span class="comm-market-dot pgh"></span>
+          <div class="comm-info">
+            <div class="comm-name">Spring Way</div>
+            <div class="comm-detail">Seneca Valley &nbsp;·&nbsp; Seneca Valley SD</div>
+          </div>
+          <span class="comm-price">From $742K</span>
+        </a>
+        <a href="#" class="community-list-item">
+          <span class="comm-market-dot pgh"></span>
+          <div class="comm-info">
+            <div class="comm-name">Highland Reserve</div>
+            <div class="comm-detail">Mt. Lebanon &nbsp;·&nbsp; Mt. Lebanon SD</div>
+          </div>
+          <span class="comm-price">From $944K</span>
+        </a>
+        <a href="#" class="community-list-item">
+          <span class="comm-market-dot phi"></span>
+          <div class="comm-info">
+            <div class="comm-name">Creekside at Malvern</div>
+            <div class="comm-detail">Chester County &nbsp;·&nbsp; Great Valley SD</div>
+          </div>
+          <span class="comm-price">From $759K</span>
+        </a>
+        <a href="#" class="community-list-item">
+          <span class="comm-market-dot phi"></span>
+          <div class="comm-info">
+            <div class="comm-name">Fairfield Estates</div>
+            <div class="comm-detail">West Chester &nbsp;·&nbsp; West Chester Area SD</div>
+          </div>
+          <span class="comm-price">From $689K</span>
+        </a>
+        <a href="#" class="community-list-item">
+          <span class="comm-market-dot phi"></span>
+          <div class="comm-info">
+            <div class="comm-name">The Reserve at Devon</div>
+            <div class="comm-detail">Tredyffrin Twp &nbsp;·&nbsp; Tredyffrin-Easttown SD</div>
+          </div>
+          <span class="comm-price">From $1.08M</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY EDDY -->
+<section class="why-eddy">
+  <div class="why-eddy-inner">
+    <div class="why-eddy-top">
+      <h2>Why Eddy Homes</h2>
+      <p>Five decades of doing this right. Here's what that looks like in practice.</p>
+    </div>
+    <div class="why-pillars">
+      <div class="pillar">
+        <div class="pillar-num">50+</div>
+        <div class="pillar-label">Years, Family-Owned</div>
+        <p class="pillar-desc">The Moritz family has built Eddy Homes since 1971 — decisions are made by people who live here, not a distant corporate office.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">6×</div>
+        <div class="pillar-label">Pittsburgh Mag Best Builder</div>
+        <p class="pillar-desc">Six consecutive years. Not a one-time award — a consistent record that our customers have backed up with their votes.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">✓</div>
+        <div class="pillar-label">GuildQuality Verified</div>
+        <p class="pillar-desc">Third-party customer satisfaction surveys, published and unfiltered. Our score reflects what homeowners actually say, not what we curate.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">#22</div>
+        <div class="pillar-label">Pittsburgh Business Times Fast 50</div>
+        <p class="pillar-desc">One of Pittsburgh's fastest-growing private companies — growth driven by referrals and repeat buyers, not marketing spend.</p>
+      </div>
+    </div>
+    <div class="awards-row">
+      <div class="award-item">
+        <div class="award-badge">🏆</div>
+        <div class="award-name">Pittsburgh Magazine Best Builder 2019–2024</div>
+      </div>
+      <div class="award-item">
+        <div class="award-badge">⭐</div>
+        <div class="award-name">GuildQuality Guildmaster Award</div>
+      </div>
+      <div class="award-item">
+        <div class="award-badge">🏙</div>
+        <div class="award-name">Gold Philly Favorites 2023</div>
+      </div>
+      <div class="award-item">
+        <div class="award-badge">📈</div>
+        <div class="award-name">Pittsburgh Fast 50 — #22</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-logo">𝓔𝓗</div>
+      <div class="footer-brand-wm">Eddy Homes</div>
+      <p class="footer-brand-tl">Life. Well Built.</p>
+      <a href="#" class="footer-realtor-btn">Realtor Portal →</a><br>
+      <a href="#" style="font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;margin-top:8px;display:inline-block;">Homeowner Portal →</a>
+    </div>
+    <div class="footer-col">
+      <h4>Pittsburgh</h4>
+      <div class="footer-market-head market-head-pgh">Communities</div>
+      <ul>
+        <li><a href="#">Woodbriar</a></li>
+        <li><a href="#">Autumn Grove</a></li>
+        <li><a href="#">Spring Way</a></li>
+        <li><a href="#">Highland Reserve</a></li>
+      </ul>
+      <div class="footer-market-head market-head-phi" style="margin-top:18px;">Philadelphia</div>
+      <ul>
+        <li><a href="#">Creekside at Malvern</a></li>
+        <li><a href="#">Fairfield Estates</a></li>
+        <li><a href="#">The Reserve at Devon</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Build &amp; Design</h4>
+      <ul>
+        <li><a href="#">Floor Plans</a></li>
+        <li><a href="#">EH Studio</a></li>
+        <li><a href="#">Build on Your Lot</a></li>
+        <li><a href="#">Traditional Collection</a></li>
+        <li><a href="#">Transitional Collection</a></li>
+        <li><a href="#">Contemporary Collection</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">Why Eddy Homes</a></li>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Resources &amp; Guides</a></li>
+        <li><a href="#">Buying Process</a></li>
+        <li><a href="#">Neighborhood Guides</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom-row">
+    <p class="footer-legal-text">&copy; 2026 Eddy Homes. All rights reserved. &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; Terms of Use</p>
+    <a href="tel:8888053339" class="footer-phone-link">888-805-EDDY</a>
+    <div class="footer-socials">
+      <a href="#" class="soc-icon" aria-label="Instagram">&#9678;</a>
+      <a href="#" class="soc-icon" aria-label="Facebook">f</a>
+      <a href="#" class="soc-icon" aria-label="Pinterest">P</a>
+      <a href="#" class="soc-icon" aria-label="YouTube">▶</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function setMarket(market, btn) {
+    document.querySelectorAll('.market-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // Nav transparency scroll behavior
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }, { passive: true });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+# Source documents — tracked locally, not in repo
+*.pdf
+*.docx
+*.pptx
+*.ppt
+*.doc
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eddy Homes — Where Do You Want to Start?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,200&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crimson: #821517;
+      --blue: #2BA6CB;
+      --black: #0f0f0f;
+      --off-white: #f8f6f1;
+      --panel-rest: #f2efe9;
+      --panel-dark: #0f0f0f;
+      --gray: #6b6660;
+      --border: rgba(15,15,15,0.09);
+      --nav-h: 64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: var(--off-white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: var(--off-white);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+      gap: 20px;
+      /* starts off-screen; GSAP animates in */
+      transform: translateY(-100%);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-mono {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 28px;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .logo-wm {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--black);
+      line-height: 1.35;
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .market-toggle {
+      display: flex;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .mkt-btn {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mkt-btn.active {
+      background: var(--black);
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--black); }
+
+    .nav-realtors {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      border: 1px solid rgba(130,21,23,0.3);
+      border-radius: 2px;
+      padding: 7px 14px;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .nav-realtors:hover {
+      background: var(--crimson);
+      color: #fff;
+      border-color: var(--crimson);
+    }
+
+    /* ── HERO WRAPPER: fills viewport ── */
+    .hero-wrap {
+      height: 100vh;
+      min-height: 680px;
+      padding-top: var(--nav-h);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADLINE AREA ── */
+    .headline-area {
+      padding: 48px 48px 36px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-shrink: 0;
+      gap: 32px;
+    }
+
+    .hl-text h1 {
+      font-size: clamp(34px, 5.2vw, 72px);
+      font-weight: 200;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+      line-height: 1.08;
+    }
+
+    /* overflow:hidden on each line so text slides up cleanly */
+    .hl-line {
+      overflow: hidden;
+      line-height: 1.12;
+    }
+
+    .hl-line span { display: block; }
+
+    .hl-meta {
+      text-align: right;
+      flex-shrink: 0;
+      max-width: 260px;
+    }
+
+    .hl-meta p {
+      font-size: 13px;
+      color: var(--gray);
+      font-weight: 300;
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+
+    .hl-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(107,102,96,0.6);
+    }
+
+    /* ── PATH PANELS ── */
+    .panels-wrap {
+      flex: 1;
+      display: flex;
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .path-panel {
+      /* GSAP controls flex-basis; CSS just sets initial + layout */
+      flex-basis: 25%;
+      flex-shrink: 0;
+      background: var(--panel-rest);
+      border-right: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 40px 40px 44px;
+      /* No CSS transition — GSAP owns all animation */
+      transition: none;
+    }
+
+    .path-panel:last-child { border-right: none; }
+
+    /* Giant background numeral */
+    .panel-bg-num {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28vw;
+      font-weight: 700;
+      color: rgba(15,15,15,0.038);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+    }
+
+    /* Crimson accent bar along top — GSAP scales in */
+    .panel-accent {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--crimson);
+      transform: scaleX(0);
+      transform-origin: left center;
+    }
+
+    .panel-index {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(15,15,15,0.28);
+      margin-bottom: 16px;
+    }
+
+    .panel-title {
+      font-size: clamp(15px, 1.7vw, 22px);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      line-height: 1.2;
+    }
+
+    /* Hidden until panel expands — GSAP fades/slides in */
+    .panel-detail {
+      opacity: 0;
+      transform: translateY(14px);
+      margin-top: 20px;
+      pointer-events: none;
+    }
+
+    .panel-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      line-height: 1.72;
+      margin-bottom: 24px;
+    }
+
+    .panel-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.28);
+      padding-bottom: 3px;
+      transition: gap 0.25s, border-color 0.25s;
+    }
+
+    .panel-cta:hover { gap: 14px; border-color: rgba(255,255,255,0.65); }
+
+    /* ── QMI SECTION ── */
+    .qmi-section {
+      background: var(--black);
+      padding: 72px 48px;
+    }
+
+    .qmi-inner { max-width: 1280px; margin: 0 auto; }
+
+    .qmi-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .qmi-live {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--crimson);
+      animation: livePulse 2s ease infinite;
+    }
+
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(1.45); }
+    }
+
+    .live-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--crimson);
+    }
+
+    .qmi-heading {
+      font-size: clamp(22px, 3vw, 40px);
+      font-weight: 200;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .qmi-all {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding-bottom: 2px;
+      transition: all 0.2s;
+    }
+
+    .qmi-all:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+
+    .qmi-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .qmi-table thead tr {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .qmi-table th {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+      padding: 0 0 14px;
+      text-align: left;
+    }
+
+    .qmi-table td {
+      font-size: 14px;
+      color: rgba(255,255,255,0.72);
+      font-weight: 300;
+      padding: 22px 0;
+    }
+
+    .qmi-table tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+
+    .qmi-table tbody tr:hover { background: rgba(255,255,255,0.03); }
+
+    .td-name {
+      font-size: 15px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff !important;
+    }
+
+    .td-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: rgba(130,21,23,0.55);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 1px;
+    }
+
+    .td-price { color: #fff !important; font-weight: 600 !important; }
+
+    .td-cta { text-align: right; }
+
+    .row-cta {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .qmi-table tbody tr:hover .row-cta { color: #fff; gap: 10px; }
+
+    /* ── TRUST SECTION ── */
+    .trust-section {
+      padding: 80px 48px;
+      background: var(--off-white);
+      border-top: 1px solid var(--border);
+    }
+
+    .trust-inner { max-width: 1280px; margin: 0 auto; }
+
+    .trust-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(15,15,15,0.28);
+      margin-bottom: 44px;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+    }
+
+    .trust-cell {
+      padding: 36px 36px 40px;
+      border-right: 1px solid var(--border);
+    }
+
+    .trust-cell:last-child { border-right: none; }
+
+    .trust-num {
+      font-size: clamp(52px, 7vw, 88px);
+      font-weight: 200;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .trust-lbl {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 60px 48px 36px;
+    }
+
+    .footer-upper {
+      display: grid;
+      grid-template-columns: 200px 1fr 1fr 1fr;
+      gap: 52px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 28px;
+    }
+
+    .f-mono {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 50px;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .f-wm {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 16px;
+    }
+
+    .f-tagline {
+      font-size: 12px;
+      font-style: italic;
+      font-weight: 200;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 22px;
+    }
+
+    .f-rcta {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      background: var(--crimson);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+
+    .f-rcta:hover { background: #6a1012; }
+
+    .f-col h5 {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+      margin-bottom: 14px;
+    }
+
+    .f-col ul { list-style: none; }
+    .f-col li { margin-bottom: 8px; }
+
+    .f-col a {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.48);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .f-col a:hover { color: #fff; }
+
+    .f-mkt {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    .footer-lower {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .f-legal { font-size: 11px; color: rgba(255,255,255,0.2); }
+
+    .f-phone {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.38);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .f-phone:hover { color: #fff; }
+
+    .f-socials { display: flex; gap: 10px; }
+
+    .f-soc {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: rgba(255,255,255,0.32);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .f-soc:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .trust-cell:nth-child(2) { border-right: none; }
+      .trust-cell:nth-child(3) { border-top: 1px solid var(--border); }
+      .footer-upper { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .headline-area { padding: 32px 20px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+      .hl-meta { text-align: left; max-width: 100%; }
+      /* Stack panels vertically on mobile */
+      .panels-wrap { flex-direction: column; height: auto; }
+      .path-panel { flex-basis: auto !important; min-height: 180px; border-right: none; border-bottom: 1px solid var(--border); }
+      .path-panel:last-child { border-bottom: none; }
+      .panel-bg-num { display: none; }
+      /* Always show detail on mobile */
+      .panel-detail { opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
+      .panel-desc { color: var(--gray); }
+      .panel-cta { color: var(--crimson); border-color: rgba(130,21,23,0.3); }
+      .qmi-section { padding: 48px 20px; }
+      .qmi-table th:nth-child(n+3),
+      .qmi-table td:nth-child(n+3) { display: none; }
+      .trust-section { padding: 56px 20px; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .trust-cell:nth-child(2) { border-right: none; }
+      .trust-cell:nth-child(3) { border-top: 1px solid var(--border); }
+      footer { padding: 48px 20px 32px; }
+      .footer-upper { grid-template-columns: 1fr; gap: 32px; }
+      .footer-lower { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="site-nav">
+  <a href="#" class="logo">
+    <span class="logo-mono">𝓔𝓗</span>
+    <span class="logo-wm">Eddy<br>Homes</span>
+  </a>
+  <div class="nav-divider"></div>
+  <div class="market-toggle">
+    <button class="mkt-btn active" onclick="setMkt('pittsburgh',this)">Pittsburgh</button>
+    <button class="mkt-btn" onclick="setMkt('philadelphia',this)">Philadelphia</button>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Find a Home</a></li>
+    <li><a href="#">Floor Plans</a></li>
+    <li><a href="#">EH Studio</a></li>
+    <li><a href="#">Why Eddy</a></li>
+    <li><a href="#">Resources</a></li>
+  </ul>
+  <a class="nav-realtors" href="#">For Realtors</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="headline-area">
+    <div class="hl-text">
+      <h1>
+        <div class="hl-line"><span>Where do you</span></div>
+        <div class="hl-line"><span>want to start?</span></div>
+      </h1>
+    </div>
+    <div class="hl-meta">
+      <p>Every great home begins with a single question. Choose your path.</p>
+      <div class="hl-eyebrow">Eddy Homes &nbsp;·&nbsp; Est. 1971 &nbsp;·&nbsp; Pittsburgh &amp; Philadelphia</div>
+    </div>
+  </div>
+
+  <div class="panels-wrap" id="panels-wrap">
+
+    <!-- 01: Geography-Led -->
+    <div class="path-panel" id="panel-0">
+      <div class="panel-bg-num">01</div>
+      <div class="panel-accent"></div>
+      <div class="panel-index">01 — By Location</div>
+      <div class="panel-title">School<br>District</div>
+      <div class="panel-detail">
+        <p class="panel-desc">North Allegheny, Peters Township, Seneca Valley, Mt. Lebanon. Find communities filtered by the districts that drive your decision.</p>
+        <a href="#" class="panel-cta">Browse by District <span>→</span></a>
+      </div>
+    </div>
+
+    <!-- 02: Design-First -->
+    <div class="path-panel" id="panel-1">
+      <div class="panel-bg-num">02</div>
+      <div class="panel-accent"></div>
+      <div class="panel-index">02 — By Design</div>
+      <div class="panel-title">Floor Plan<br>&amp; Studio</div>
+      <div class="panel-detail">
+        <p class="panel-desc">Explore 20+ floor plans and visit EH Studio — our in-house design team holds NCIDQ accreditation. Three collections, every detail customizable.</p>
+        <a href="#" class="panel-cta">Explore Floor Plans <span>→</span></a>
+      </div>
+    </div>
+
+    <!-- 03: Timing-Led / QMI -->
+    <div class="path-panel" id="panel-2">
+      <div class="panel-bg-num">03</div>
+      <div class="panel-accent"></div>
+      <div class="panel-index">03 — By Timeline</div>
+      <div class="panel-title">Quick<br>Move-In</div>
+      <div class="panel-detail">
+        <p class="panel-desc">3 homes available now. Complete or near-completion, professionally designed, ready before the school year. Bowmore, Rosebank, Windsor.</p>
+        <a href="#" class="panel-cta">See QMI Homes <span>→</span></a>
+      </div>
+    </div>
+
+    <!-- 04: Realtor Partner -->
+    <div class="path-panel" id="panel-3">
+      <div class="panel-bg-num">04</div>
+      <div class="panel-accent"></div>
+      <div class="panel-index">04 — For Realtors</div>
+      <div class="panel-title">Realtor<br>Partner</div>
+      <div class="panel-detail">
+        <p class="panel-desc">Register your client, access co-op commission details, and use the Realtor Portal. Eddy Homes works alongside your buyers — not around them.</p>
+        <a href="#" class="panel-cta">Access Portal <span>→</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- QMI -->
+<section class="qmi-section">
+  <div class="qmi-inner">
+    <div class="qmi-top">
+      <div class="qmi-live">
+        <span class="live-dot"></span>
+        <span class="live-label">Quick Move-In</span>
+      </div>
+      <h2 class="qmi-heading">Available now</h2>
+      <a href="#" class="qmi-all">All homes →</a>
+    </div>
+    <table class="qmi-table">
+      <thead>
+        <tr>
+          <th>Floor Plan</th>
+          <th>Community &amp; School District</th>
+          <th>Size</th>
+          <th>Beds / Baths</th>
+          <th>Move-In</th>
+          <th style="text-align:right;">Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-name">The Bowmore</td>
+          <td>Woodbriar &nbsp;·&nbsp; Peters Township SD</td>
+          <td>3,840 sq ft</td>
+          <td>4 / 3.5</td>
+          <td><span class="td-tag">Aug 2026</span></td>
+          <td class="td-price" style="text-align:right;">$1,149,900</td>
+          <td class="td-cta"><a href="#" class="row-cta">View →</a></td>
+        </tr>
+        <tr>
+          <td class="td-name">The Rosebank</td>
+          <td>Autumn Grove &nbsp;·&nbsp; North Allegheny SD</td>
+          <td>3,210 sq ft</td>
+          <td>4 / 3</td>
+          <td><span class="td-tag">Sep 2026</span></td>
+          <td class="td-price" style="text-align:right;">$879,900</td>
+          <td class="td-cta"><a href="#" class="row-cta">View →</a></td>
+        </tr>
+        <tr>
+          <td class="td-name">The Windsor</td>
+          <td>Spring Way &nbsp;·&nbsp; Seneca Valley SD</td>
+          <td>4,120 sq ft</td>
+          <td>5 / 4.5</td>
+          <td><span class="td-tag">Oct 2026</span></td>
+          <td class="td-price" style="text-align:right;">$1,079,900</td>
+          <td class="td-cta"><a href="#" class="row-cta">View →</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust-section">
+  <div class="trust-inner">
+    <div class="trust-eyebrow">A record, not a claim</div>
+    <div class="trust-grid">
+      <div class="trust-cell">
+        <div class="trust-num">50+</div>
+        <div class="trust-lbl">Years, family-owned<br>since 1971</div>
+      </div>
+      <div class="trust-cell">
+        <div class="trust-num">6×</div>
+        <div class="trust-lbl">Pittsburgh Magazine<br>Best Builder</div>
+      </div>
+      <div class="trust-cell">
+        <div class="trust-num">#22</div>
+        <div class="trust-lbl">Pittsburgh Business<br>Times Fast 50</div>
+      </div>
+      <div class="trust-cell">
+        <div class="trust-num">✓</div>
+        <div class="trust-lbl">GuildQuality<br>Verified</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-upper">
+    <div>
+      <div class="f-mono">𝓔𝓗</div>
+      <div class="f-wm">Eddy Homes</div>
+      <p class="f-tagline">Life. Well Built.</p>
+      <a href="#" class="f-rcta">Realtor Portal →</a>
+    </div>
+    <div class="f-col">
+      <h5>Pittsburgh</h5>
+      <div class="f-mkt" style="color:var(--crimson);">Communities</div>
+      <ul>
+        <li><a href="#">Woodbriar — Peters Township</a></li>
+        <li><a href="#">Autumn Grove — North Allegheny</a></li>
+        <li><a href="#">Spring Way — Seneca Valley</a></li>
+        <li><a href="#">Highland Reserve — Mt. Lebanon</a></li>
+      </ul>
+      <div class="f-mkt" style="color:var(--blue);margin-top:18px;">Philadelphia</div>
+      <ul>
+        <li><a href="#">Creekside at Malvern</a></li>
+        <li><a href="#">Fairfield Estates</a></li>
+        <li><a href="#">The Reserve at Devon</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="#">Find a Home</a></li>
+        <li><a href="#">Floor Plans</a></li>
+        <li><a href="#">EH Studio</a></li>
+        <li><a href="#">Build on Your Lot</a></li>
+        <li><a href="#">Why Eddy Homes</a></li>
+        <li><a href="#">Buying Process</a></li>
+        <li><a href="#">Neighborhood Guides</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Homeowner Portal</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-lower">
+    <p class="f-legal">&copy; 2026 Eddy Homes. All rights reserved. &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; Terms of Use</p>
+    <a href="tel:8888053339" class="f-phone">888-805-EDDY</a>
+    <div class="f-socials">
+      <a href="#" class="f-soc">&#9678;</a>
+      <a href="#" class="f-soc">f</a>
+      <a href="#" class="f-soc">P</a>
+      <a href="#" class="f-soc">▶</a>
+    </div>
+  </div>
+</footer>
+
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  const isMobile = () => window.innerWidth <= 768;
+
+  /* ─── PAGE LOAD SEQUENCE ─── */
+  const loadTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+  loadTl
+    .to('#site-nav', { y: 0, duration: 0.55, ease: 'power3.out' })
+    .fromTo('.hl-line span',
+      { yPercent: 115 },
+      { yPercent: 0, stagger: 0.13, duration: 1.05 },
+      '-=0.25'
+    )
+    .fromTo('.hl-meta',
+      { opacity: 0, x: 18 },
+      { opacity: 1, x: 0, duration: 0.75, ease: 'power3.out' },
+      '-=0.65'
+    )
+    .fromTo('.path-panel',
+      { y: 56, opacity: 0 },
+      { y: 0, opacity: 1, stagger: 0.09, duration: 0.72, ease: 'power3.out' },
+      '-=0.5'
+    );
+
+  /* ─── PANEL HOVER INTERACTION ─── */
+  if (!isMobile()) {
+    const panels = document.querySelectorAll('.path-panel');
+    const wrap   = document.getElementById('panels-wrap');
+
+    const EXPANDED  = '48%';
+    const COLLAPSED = '17.33%';
+    const NORMAL    = '25%';
+
+    const DARK_BG   = '#0f0f0f';
+    const REST_BG   = '#f2efe9';
+    const DIM_BG    = '#ebe8e2';
+
+    panels.forEach((panel, i) => {
+      /* Cursor parallax on background numeral */
+      panel.addEventListener('mousemove', e => {
+        const r = panel.getBoundingClientRect();
+        const xPct = (e.clientX - r.left) / r.width  - 0.5;
+        const yPct = (e.clientY - r.top)  / r.height - 0.5;
+        gsap.to(panel.querySelector('.panel-bg-num'), {
+          x: xPct * 24, y: yPct * 24,
+          duration: 0.9, ease: 'power2.out'
+        });
+      });
+
+      panel.addEventListener('mouseenter', () => {
+        panels.forEach((p, j) => {
+          const active = i === j;
+
+          /* Width */
+          gsap.to(p, {
+            flexBasis: active ? EXPANDED : COLLAPSED,
+            duration: 0.6, ease: 'power3.inOut'
+          });
+
+          /* Background */
+          gsap.to(p, {
+            backgroundColor: active ? DARK_BG : DIM_BG,
+            duration: 0.42, ease: 'power2.inOut'
+          });
+
+          /* Index label */
+          gsap.to(p.querySelector('.panel-index'), {
+            color: active ? 'rgba(255,255,255,0.3)' : 'rgba(15,15,15,0.2)',
+            duration: 0.28
+          });
+
+          /* Title */
+          gsap.to(p.querySelector('.panel-title'), {
+            color: active ? '#ffffff' : 'rgba(15,15,15,0.55)',
+            duration: 0.28
+          });
+
+          /* Crimson accent bar */
+          gsap.to(p.querySelector('.panel-accent'), {
+            scaleX: active ? 1 : 0,
+            duration: active ? 0.52 : 0.22,
+            ease: active ? 'power3.inOut' : 'power2.in'
+          });
+
+          /* Detail content */
+          const detail = p.querySelector('.panel-detail');
+          if (active) {
+            gsap.to(detail, {
+              opacity: 1, y: 0,
+              duration: 0.42, delay: 0.2,
+              ease: 'power2.out'
+            });
+            gsap.set(detail, { pointerEvents: 'auto' });
+          } else {
+            gsap.to(detail, {
+              opacity: 0, y: 10,
+              duration: 0.2, ease: 'power2.in'
+            });
+            gsap.set(detail, { pointerEvents: 'none' });
+          }
+        });
+      });
+    });
+
+    /* Reset on container leave */
+    wrap.addEventListener('mouseleave', () => {
+      panels.forEach(p => {
+        gsap.to(p, { flexBasis: NORMAL, duration: 0.55, ease: 'power3.inOut' });
+        gsap.to(p, { backgroundColor: REST_BG, duration: 0.42, ease: 'power2.inOut' });
+        gsap.to(p.querySelector('.panel-index'), { color: 'rgba(15,15,15,0.28)', duration: 0.35 });
+        gsap.to(p.querySelector('.panel-title'), { color: '#0f0f0f', duration: 0.35 });
+        gsap.to(p.querySelector('.panel-accent'), { scaleX: 0, duration: 0.3, ease: 'power2.in' });
+        gsap.to(p.querySelector('.panel-detail'), { opacity: 0, y: 14, duration: 0.25 });
+        gsap.set(p.querySelector('.panel-detail'), { pointerEvents: 'none' });
+        gsap.to(p.querySelector('.panel-bg-num'), { x: 0, y: 0, duration: 0.6, ease: 'power2.out' });
+      });
+    });
+  }
+
+  /* ─── SCROLL: QMI table rows ─── */
+  gsap.fromTo('.qmi-table tbody tr',
+    { opacity: 0, x: -18 },
+    {
+      opacity: 1, x: 0,
+      stagger: 0.1, duration: 0.6, ease: 'power3.out',
+      scrollTrigger: { trigger: '.qmi-section', start: 'top 78%', once: true }
+    }
+  );
+
+  /* ─── SCROLL: Trust cells ─── */
+  gsap.fromTo('.trust-cell',
+    { opacity: 0, y: 28 },
+    {
+      opacity: 1, y: 0,
+      stagger: 0.12, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: '.trust-section', start: 'top 72%', once: true }
+    }
+  );
+
+  /* ─── SCROLL: Footer ─── */
+  gsap.fromTo('footer',
+    { opacity: 0 },
+    {
+      opacity: 1, duration: 0.8, ease: 'power2.out',
+      scrollTrigger: { trigger: 'footer', start: 'top 88%', once: true }
+    }
+  );
+
+  /* ─── Market toggle ─── */
+  function setMkt(mkt, btn) {
+    document.querySelectorAll('.mkt-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

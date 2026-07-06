@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eddy Homes — Life. Well Built.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,200;1,6..12,300&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crimson: #821517;
+      --black: #111111;
+      --white: #ffffff;
+      --warm: #f7f5f0;
+      --gray: rgba(17,17,17,0.42);
+      --border: rgba(17,17,17,0.1);
+      --nav-h: 60px;
+    }
+
+    html { scroll-behavior: auto; } /* let GSAP handle scroll */
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+      background: transparent;
+      transition: background 0.5s, border-color 0.5s;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.solid {
+      background: var(--white);
+      border-color: var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-mono {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 30px;
+      line-height: 1;
+      color: var(--white);
+      transition: color 0.4s;
+    }
+
+    nav.solid .nav-mono { color: var(--black); }
+
+    .nav-wm {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.3;
+      transition: color 0.4s;
+    }
+
+    nav.solid .nav-wm { color: var(--black); }
+
+    .market-toggle {
+      display: flex;
+      margin-left: 28px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 3px;
+      overflow: hidden;
+      transition: border-color 0.4s;
+    }
+
+    nav.solid .market-toggle { border-color: var(--border); }
+
+    .mkt-btn {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 13px;
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,0.65);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    nav.solid .mkt-btn { color: var(--gray); }
+
+    .mkt-btn.active {
+      background: rgba(255,255,255,0.18);
+      color: var(--white);
+    }
+
+    nav.solid .mkt-btn.active {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav.solid .nav-links a { color: var(--gray); }
+    .nav-links a:hover { color: var(--white); }
+    nav.solid .nav-links a:hover { color: var(--black); }
+
+    .nav-realtors {
+      font-size: 10px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.15em !important;
+      color: rgba(255,255,255,0.85) !important;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 2px;
+      padding: 6px 14px;
+      text-decoration: none;
+      transition: all 0.25s !important;
+    }
+
+    nav.solid .nav-realtors {
+      color: var(--crimson) !important;
+      border-color: rgba(130,21,23,0.35);
+    }
+
+    .nav-realtors:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.7) !important;
+    }
+
+    nav.solid .nav-realtors:hover {
+      background: var(--crimson) !important;
+      color: var(--white) !important;
+      border-color: var(--crimson) !important;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      height: 130%; /* Extra height for parallax travel */
+      top: -15%;
+      background: linear-gradient(
+        148deg,
+        #2e2218 0%,
+        #4a3628 12%,
+        #6b5040 24%,
+        #8e7060 36%,
+        #a88e78 48%,
+        #c4aa90 58%,
+        #b89878 68%,
+        #9a7c5e 78%,
+        #7a5e44 88%,
+        #5a4230 96%,
+        #3e2e1e 100%
+      );
+      will-change: transform;
+    }
+
+    /* Architectural window-light effect */
+    .hero-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 70% 20%, rgba(255,235,190,0.28) 0%, transparent 60%);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(17,17,17,0.15) 0%,
+        rgba(17,17,17,0.08) 40%,
+        rgba(17,17,17,0.55) 75%,
+        rgba(17,17,17,0.82) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      padding: 0 72px 68px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .hero-headline {
+      font-size: clamp(48px, 7vw, 100px);
+      font-weight: 200;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.0;
+      clip-path: inset(0 0 100% 0);
+    }
+
+    .hero-meta {
+      text-align: right;
+      flex-shrink: 0;
+      max-width: 280px;
+      opacity: 0;
+    }
+
+    .hero-meta-year {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 12px;
+    }
+
+    .hero-meta-copy {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 72px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+      opacity: 0;
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.3);
+      transform-origin: left;
+      animation: scrollLine 2.5s ease infinite;
+    }
+
+    @keyframes scrollLine {
+      0%   { transform: scaleX(0); opacity: 0; }
+      30%  { opacity: 1; }
+      70%  { transform: scaleX(1); opacity: 1; }
+      100% { transform: scaleX(1); opacity: 0; }
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-wrap {
+      background: var(--black);
+      padding: 14px 0;
+      overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      width: max-content;
+      animation: marqueeScroll 28s linear infinite;
+    }
+
+    .marquee-segment {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding-right: 32px;
+      white-space: nowrap;
+    }
+
+    .marquee-item {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .marquee-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--crimson);
+      flex-shrink: 0;
+    }
+
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── MANIFESTO ─── */
+    .manifesto {
+      padding: 120px 72px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .manifesto-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .manifesto-body {
+      font-size: clamp(22px, 3.2vw, 40px);
+      font-weight: 200;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--black);
+      line-height: 1.35;
+    }
+
+    /* chars are wrapped by JS */
+    .manifesto-body .ch {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    /* ─── DIVIDER LINE ─── */
+    .section-line {
+      height: 1px;
+      background: var(--border);
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+
+    /* ─── CONCEPT SECTIONS (numbered splits) ─── */
+    .concept-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+    }
+
+    .concept-section.reverse { direction: rtl; }
+    .concept-section.reverse > * { direction: ltr; }
+
+    .cs-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cs-img-inner {
+      position: absolute;
+      inset: 0;
+      height: 130%;
+      top: -15%;
+      will-change: transform;
+    }
+
+    /* Gradient variants per section */
+    .cs-img.exterior .cs-img-inner {
+      background: linear-gradient(145deg, #3e3020 0%, #6a5240 25%, #96796a 50%, #c0a898 70%, #9a8878 85%, #705848 100%);
+    }
+
+    .cs-img.interior .cs-img-inner {
+      background: linear-gradient(155deg, #f0e8d8 0%, #e0ccb0 22%, #c8a87a 44%, #b09060 62%, #907050 78%, #6e5238 100%);
+    }
+
+    .cs-img.detail .cs-img-inner {
+      background: linear-gradient(130deg, #d8d2c8 0%, #c0b8aa 25%, #a8a090 48%, #908878 68%, #787070 85%, #585454 100%);
+    }
+
+    .cs-img.landscape .cs-img-inner {
+      background: linear-gradient(138deg, #384838 0%, #5a6e52 22%, #7a9270 45%, #9aaa8e 65%, #82906e 80%, #5e6e50 100%);
+    }
+
+    .cs-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 72px;
+    }
+
+    .cs-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateX(-16px);
+    }
+
+    .concept-section.reverse .cs-num {
+      transform: translateX(16px);
+    }
+
+    .cs-heading {
+      font-size: clamp(28px, 3.5vw, 50px);
+      font-weight: 200;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      line-height: 1.1;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+
+    .cs-heading-inner {
+      display: block;
+      transform: translateY(100%);
+    }
+
+    .cs-body {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .cs-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(17,17,17,0.25);
+      padding-bottom: 4px;
+      opacity: 0;
+      transition: gap 0.25s, border-color 0.25s;
+      align-self: flex-start;
+    }
+
+    .cs-cta:hover { gap: 16px; border-color: var(--black); }
+
+    /* ─── FULL-BLEED QUOTE ─── */
+    .quote-section {
+      position: relative;
+      height: 70vh;
+      min-height: 480px;
+      overflow: hidden;
+    }
+
+    .quote-bg {
+      position: absolute;
+      inset: 0;
+      height: 130%;
+      top: -15%;
+      background: linear-gradient(
+        125deg,
+        #1e1a14 0%,
+        #3a2e22 18%,
+        #5c4838 36%,
+        #806050 52%,
+        #9e7c68 64%,
+        #8a6c58 76%,
+        #6a5040 88%,
+        #4a3828 100%
+      );
+      will-change: transform;
+    }
+
+    .quote-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(17,17,17,0.58);
+      z-index: 1;
+    }
+
+    .quote-content {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10vw;
+      text-align: center;
+    }
+
+    .quote-mark {
+      font-size: 80px;
+      font-weight: 200;
+      color: rgba(255,255,255,0.15);
+      line-height: 0.6;
+      vertical-align: top;
+      font-family: Georgia, serif;
+    }
+
+    .quote-text {
+      font-size: clamp(22px, 3vw, 40px);
+      font-weight: 200;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.3;
+      clip-path: inset(0 0 100% 0);
+    }
+
+    .quote-attr {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 24px;
+      opacity: 0;
+    }
+
+    /* ─── QMI SECTION ─── */
+    .qmi-section {
+      background: var(--black);
+      padding: 96px 72px;
+    }
+
+    .qmi-inner { max-width: 1200px; margin: 0 auto; }
+
+    .qmi-header {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 20px;
+    }
+
+    .qmi-live {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--crimson);
+      animation: livePulse 2s ease infinite;
+    }
+
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.5); }
+    }
+
+    .live-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--crimson);
+    }
+
+    .qmi-title {
+      font-size: clamp(20px, 3vw, 36px);
+      font-weight: 200;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .qmi-viewall {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 2px;
+      transition: all 0.2s;
+    }
+
+    .qmi-viewall:hover { color: var(--white); border-color: rgba(255,255,255,0.45); }
+
+    .qmi-list { display: flex; flex-direction: column; }
+
+    .qmi-row {
+      display: grid;
+      grid-template-columns: 240px 1fr auto auto auto;
+      gap: 24px;
+      align-items: center;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    .qmi-row:hover { background: rgba(255,255,255,0.02); }
+
+    .qmi-name {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .qmi-loc {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .qmi-specs {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+    }
+
+    .qmi-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: rgba(130,21,23,0.5);
+      color: var(--white);
+      padding: 4px 10px;
+      border-radius: 1px;
+    }
+
+    .qmi-price {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .qmi-arrow {
+      font-size: 14px;
+      color: rgba(255,255,255,0.25);
+      transition: all 0.25s;
+      opacity: 0;
+    }
+
+    .qmi-row:hover .qmi-arrow { opacity: 1; transform: translateX(4px); }
+
+    /* ─── COMMUNITY GRID ─── */
+    .communities-section {
+      padding: 96px 72px;
+      background: var(--warm);
+    }
+
+    .communities-inner { max-width: 1280px; margin: 0 auto; }
+
+    .communities-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .communities-header h2 {
+      font-size: clamp(22px, 3vw, 40px);
+      font-weight: 200;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    .community-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .community-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .community-card[data-hidden="true"] {
+      display: none;
+    }
+
+    .cc-img {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.6s ease;
+    }
+
+    .community-card:hover .cc-img { transform: scale(1.04); }
+
+    .cc-img.pgh-1 { background: linear-gradient(145deg, #4a3828 0%, #7a6250 30%, #a89080 55%, #c8b0a0 75%, #a88e7a 90%); }
+    .cc-img.pgh-2 { background: linear-gradient(150deg, #3a4a38 0%, #5e7258 28%, #82988a 52%, #a0b0a4 72%, #808e7a 90%); }
+    .cc-img.pgh-3 { background: linear-gradient(140deg, #4a3838 0%, #726060 28%, #9a8888 52%, #b8a8a8 72%, #9a8888 90%); }
+    .cc-img.pgh-4 { background: linear-gradient(148deg, #3a3a4a 0%, #5e5e78 28%, #8080a0 52%, #a0a0b8 72%, #808098 90%); }
+    .cc-img.phi-1 { background: linear-gradient(142deg, #384038 0%, #5c6858 28%, #809280 52%, #9aaa9a 72%, #7a8a7a 90%); }
+    .cc-img.phi-2 { background: linear-gradient(146deg, #3e3830 0%, #645e52 28%, #90887a 52%, #aca49a 72%, #8c847a 90%); }
+    .cc-img.phi-3 { background: linear-gradient(144deg, #3a3e48 0%, #5e6478 28%, #84889e 52%, #a0a4b4 72%, #808498 90%); }
+
+    .cc-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(17,17,17,0.78) 0%, rgba(17,17,17,0.1) 55%, transparent 100%);
+      transition: background 0.4s;
+    }
+
+    .community-card:hover .cc-overlay {
+      background: linear-gradient(to top, rgba(17,17,17,0.88) 0%, rgba(17,17,17,0.2) 60%, transparent 100%);
+    }
+
+    .cc-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px 28px;
+      z-index: 2;
+    }
+
+    .cc-market {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 6px;
+    }
+
+    .cc-name {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+
+    .cc-detail {
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+
+    .cc-price {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.3s;
+    }
+
+    .community-card:hover .cc-price { opacity: 1; transform: translateY(0); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black);
+      padding: 72px 72px 40px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 36px;
+    }
+
+    .f-brand-mono {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 52px;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .f-brand-wm {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 16px;
+    }
+
+    .f-tagline {
+      font-size: 13px;
+      font-style: italic;
+      font-weight: 200;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 24px;
+    }
+
+    .f-rcta {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      background: var(--crimson);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+
+    .f-rcta:hover { background: #6a1012; }
+
+    .f-col h5 {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 16px;
+    }
+
+    .f-col ul { list-style: none; }
+    .f-col li { margin-bottom: 9px; }
+
+    .f-col a {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.48);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .f-col a:hover { color: var(--white); }
+
+    .f-mkt {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 18px;
+      margin-bottom: 9px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .f-legal { font-size: 11px; color: rgba(255,255,255,0.18); }
+
+    .f-phone {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .f-phone:hover { color: var(--white); }
+
+    .f-socials { display: flex; gap: 10px; }
+
+    .f-soc {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .f-soc:hover { border-color: rgba(255,255,255,0.38); color: var(--white); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      .concept-section { grid-template-columns: 1fr; min-height: auto; }
+      .concept-section.reverse { direction: ltr; }
+      .cs-img { height: 55vw; min-height: 320px; }
+      .cs-img-inner { position: absolute; height: 100%; top: 0; }
+      .cs-text { padding: 56px 40px; }
+      .community-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero-content { padding: 0 24px 48px; flex-direction: column; align-items: flex-start; gap: 20px; }
+      .hero-scroll { left: 24px; }
+      .hero-meta { text-align: left; max-width: 100%; }
+      .manifesto { padding: 72px 24px; }
+      .qmi-section { padding: 64px 24px; }
+      .qmi-row { grid-template-columns: 1fr auto; gap: 12px; }
+      .qmi-loc, .qmi-specs { display: none; }
+      .communities-section { padding: 64px 24px; }
+      .community-grid { grid-template-columns: 1fr; }
+      .communities-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      footer { padding: 56px 24px 32px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .cs-text { padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">
+    <span class="nav-mono">𝓔𝓗</span>
+    <span class="nav-wm">Eddy<br>Homes</span>
+  </a>
+  <div class="market-toggle">
+    <button class="mkt-btn active" onclick="setMkt('pittsburgh',this)">Pittsburgh</button>
+    <button class="mkt-btn" onclick="setMkt('philadelphia',this)">Philadelphia</button>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Find a Home</a></li>
+    <li><a href="#">Floor Plans</a></li>
+    <li><a href="#">EH Studio</a></li>
+    <li><a href="#">Why Eddy</a></li>
+    <li><a href="#">Resources</a></li>
+    <li><a href="#" class="nav-realtors">For Realtors</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img" id="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-headline" id="hero-headline">Life.<br>Well Built.</h1>
+    <div class="hero-meta" id="hero-meta">
+      <div class="hero-meta-year">Family-owned · Est. 1971</div>
+      <p class="hero-meta-copy">Custom homes built in Pittsburgh and Philadelphia — communities where the Moritz family has lived and built for over fifty years.</p>
+    </div>
+  </div>
+  <div class="hero-scroll" id="hero-scroll">
+    <span class="scroll-line"></span>
+    Scroll
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee-track">
+    <!-- duplicated for seamless loop -->
+    <div class="marquee-segment">
+      <span class="marquee-item">North Allegheny</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Peters Township</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Seneca Valley</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Mt. Lebanon</span><span class="marquee-dot"></span>
+      <span class="marquee-item">West Chester</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Great Valley</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Tredyffrin-Easttown</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Upper St. Clair</span><span class="marquee-dot"></span>
+    </div>
+    <div class="marquee-segment" aria-hidden="true">
+      <span class="marquee-item">North Allegheny</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Peters Township</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Seneca Valley</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Mt. Lebanon</span><span class="marquee-dot"></span>
+      <span class="marquee-item">West Chester</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Great Valley</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Tredyffrin-Easttown</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Upper St. Clair</span><span class="marquee-dot"></span>
+    </div>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-label" id="manifesto-label">Pittsburgh · Since 1971</div>
+  <p class="manifesto-body" id="manifesto-body">Family-owned since the beginning. Every community we build, we stake our name on. Every home we deliver is built honestly — with the materials, the craftsmanship, and the care that lasts.</p>
+</section>
+
+<div class="section-line" id="line-1"></div>
+
+<!-- CONCEPT 01: The Lot -->
+<div class="concept-section" id="cs-1">
+  <div class="cs-img exterior">
+    <div class="cs-img-inner" id="cs1-img"></div>
+  </div>
+  <div class="cs-text">
+    <div class="cs-num" id="cs1-num">01 — The Lot</div>
+    <h2 class="cs-heading"><span class="cs-heading-inner" id="cs1-head">Find your<br>community</span></h2>
+    <p class="cs-body" id="cs1-body">The right school district is often the first decision. We build in North Allegheny, Peters Township, Seneca Valley, and Mt. Lebanon in Pittsburgh — and Great Valley, West Chester, and Tredyffrin-Easttown in Philadelphia. Each community is chosen for what surrounds it, not just the lot itself.</p>
+    <a href="#" class="cs-cta" id="cs1-cta">Browse Communities <span>→</span></a>
+  </div>
+</div>
+
+<div class="section-line" id="line-2"></div>
+
+<!-- CONCEPT 02: The Plan -->
+<div class="concept-section reverse" id="cs-2">
+  <div class="cs-img landscape">
+    <div class="cs-img-inner" id="cs2-img"></div>
+  </div>
+  <div class="cs-text">
+    <div class="cs-num" id="cs2-num">02 — The Plan</div>
+    <h2 class="cs-heading"><span class="cs-heading-inner" id="cs2-head">Designed<br>around you</span></h2>
+    <p class="cs-body" id="cs2-body">Over twenty floor plans. Each one designed with the flexibility to grow with your family — from the Bowmore's four-bedroom open plan to the Windsor's five-bedroom formal layout. Starting in the high $400s and reaching over a million, there's a plan for what you're building toward.</p>
+    <a href="#" class="cs-cta" id="cs2-cta">Explore Floor Plans <span>→</span></a>
+  </div>
+</div>
+
+<!-- FULL-BLEED QUOTE -->
+<section class="quote-section">
+  <div class="quote-bg" id="quote-bg"></div>
+  <div class="quote-overlay"></div>
+  <div class="quote-content">
+    <div>
+      <p class="quote-text" id="quote-text">We build the kind of homes we'd want to live in ourselves.</p>
+      <p class="quote-attr" id="quote-attr">— The Moritz Family, Eddy Homes</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-line" id="line-3"></div>
+
+<!-- CONCEPT 03: The Studio -->
+<div class="concept-section" id="cs-3">
+  <div class="cs-img detail">
+    <div class="cs-img-inner" id="cs3-img"></div>
+  </div>
+  <div class="cs-text">
+    <div class="cs-num" id="cs3-num">03 — The Studio</div>
+    <h2 class="cs-heading"><span class="cs-heading-inner" id="cs3-head">Three collections.<br>One starting point.</span></h2>
+    <p class="cs-body" id="cs3-body">EH Studio is where floor plans become homes. Our in-house design team — NCIDQ-accredited — guides every selection, from cabinetry species to hardware finish. Traditional, Transitional, or Contemporary: each collection is a point of departure, not a limit.</p>
+    <a href="#" class="cs-cta" id="cs3-cta">Visit EH Studio <span>→</span></a>
+  </div>
+</div>
+
+<div class="section-line" id="line-4"></div>
+
+<!-- CONCEPT 04: Build on Your Lot -->
+<div class="concept-section reverse" id="cs-4">
+  <div class="cs-img interior">
+    <div class="cs-img-inner" id="cs4-img"></div>
+  </div>
+  <div class="cs-text">
+    <div class="cs-num" id="cs4-num">04 — Your Lot</div>
+    <h2 class="cs-heading"><span class="cs-heading-inner" id="cs4-head">Already own<br>the land?</span></h2>
+    <p class="cs-body" id="cs4-body">We build on your lot anywhere in our markets. Bring us your parcel, your ideas, and your wishlist — we'll bring the floor plans, the designers, and fifty years of building experience. Custom to the address.</p>
+    <a href="#" class="cs-cta" id="cs4-cta">Build on Your Lot <span>→</span></a>
+  </div>
+</div>
+
+<!-- QMI -->
+<section class="qmi-section">
+  <div class="qmi-inner">
+    <div class="qmi-header">
+      <div class="qmi-live">
+        <span class="live-dot"></span>
+        <span class="live-label">Quick Move-In</span>
+      </div>
+      <h2 class="qmi-title">Move in this season</h2>
+      <a href="#" class="qmi-viewall">View all homes →</a>
+    </div>
+    <div class="qmi-list">
+      <a href="#" class="qmi-row">
+        <span class="qmi-name">The Bowmore</span>
+        <span class="qmi-loc">Woodbriar · Peters Township, PA · Peters Twp SD</span>
+        <span class="qmi-specs">4 bed / 3.5 bath · 3,840 sq ft</span>
+        <span class="qmi-tag">Aug 2026</span>
+        <span class="qmi-price">$1,149,900</span>
+        <span class="qmi-arrow">→</span>
+      </a>
+      <a href="#" class="qmi-row">
+        <span class="qmi-name">The Rosebank</span>
+        <span class="qmi-loc">Autumn Grove · North Allegheny, PA · North Allegheny SD</span>
+        <span class="qmi-specs">4 bed / 3 bath · 3,210 sq ft</span>
+        <span class="qmi-tag">Sep 2026</span>
+        <span class="qmi-price">$879,900</span>
+        <span class="qmi-arrow">→</span>
+      </a>
+      <a href="#" class="qmi-row">
+        <span class="qmi-name">The Windsor</span>
+        <span class="qmi-loc">Spring Way · Seneca Valley, PA · Seneca Valley SD</span>
+        <span class="qmi-specs">5 bed / 4.5 bath · 4,120 sq ft</span>
+        <span class="qmi-tag">Oct 2026</span>
+        <span class="qmi-price">$1,079,900</span>
+        <span class="qmi-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY GRID -->
+<section class="communities-section">
+  <div class="communities-inner">
+    <div class="communities-header">
+      <h2>Active Communities</h2>
+      <div class="filter-group">
+        <button class="filter-btn active" onclick="filterCommunities('all', this)">All</button>
+        <button class="filter-btn" onclick="filterCommunities('pgh', this)">Pittsburgh</button>
+        <button class="filter-btn" onclick="filterCommunities('phi', this)">Philadelphia</button>
+      </div>
+    </div>
+    <div class="community-grid" id="community-grid">
+
+      <div class="community-card" data-market="pgh">
+        <div class="cc-img pgh-1"></div>
+        <div class="cc-overlay"></div>
+        <div class="cc-content">
+          <div class="cc-market">Pittsburgh</div>
+          <div class="cc-name">Woodbriar</div>
+          <div class="cc-detail">Peters Township · Peters Twp SD</div>
+          <div class="cc-price">From $824,900</div>
+        </div>
+      </div>
+
+      <div class="community-card" data-market="pgh">
+        <div class="cc-img pgh-2"></div>
+        <div class="cc-overlay"></div>
+        <div class="cc-content">
+          <div class="cc-market">Pittsburgh</div>
+          <div class="cc-name">Autumn Grove</div>
+          <div class="cc-detail">North Allegheny · North Allegheny SD</div>
+          <div class="cc-price">From $699,900</div>
+        </div>
+      </div>
+
+      <div class="community-card" data-market="pgh">
+        <div class="cc-img pgh-3"></div>
+        <div class="cc-overlay"></div>
+        <div class="cc-content">
+          <div class="cc-market">Pittsburgh</div>
+          <div class="cc-name">Spring Way</div>
+          <div class="cc-detail">Seneca Valley · Seneca Valley SD</div>
+          <div class="cc-price">From $742,900</div>
+        </div>
+      </div>
+
+      <div class="community-card" data-market="pgh">
+        <div class="cc-img pgh-4"></div>
+        <div class="cc-overlay"></div>
+        <div class="cc-content">
+          <div class="cc-market">Pittsburgh</div>
+          <div class="cc-name">Highland Reserve</div>
+          <div class="cc-detail">Mt. Lebanon · Mt. Lebanon SD</div>
+          <div class="cc-price">From $944,900</div>
+        </div>
+      </div>
+
+      <div class="community-card" data-market="phi">
+        <div class="cc-img phi-1"></div>
+        <div class="cc-overlay"></div>
+        <div class="cc-content">
+          <div class="cc-market">Philadelphia</div>
+          <div class="cc-name">Creekside at Malvern</div>
+          <div class="cc-detail">Chester County · Great Valley SD</div>
+          <div class="cc-price">From $759,900</div>
+        </div>
+      </div>
+
+      <div class="community-card" data-market="phi">
+        <div class="cc-img phi-2"></div>
+        <div class="cc-overlay"></div>
+        <div class="cc-content">
+          <div class="cc-market">Philadelphia</div>
+          <div class="cc-name">Fairfield Estates</div>
+          <div class="cc-detail">West Chester · West Chester Area SD</div>
+          <div class="cc-price">From $689,900</div>
+        </div>
+      </div>
+
+      <div class="community-card" data-market="phi">
+        <div class="cc-img phi-3"></div>
+        <div class="cc-overlay"></div>
+        <div class="cc-content">
+          <div class="cc-market">Philadelphia</div>
+          <div class="cc-name">The Reserve at Devon</div>
+          <div class="cc-detail">Tredyffrin Twp · Tredyffrin-Easttown SD</div>
+          <div class="cc-price">From $1,079,900</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="f-brand-mono">𝓔𝓗</div>
+      <div class="f-brand-wm">Eddy Homes</div>
+      <p class="f-tagline">Life. Well Built.</p>
+      <a href="#" class="f-rcta">Realtor Portal →</a>
+    </div>
+    <div class="f-col">
+      <h5>Pittsburgh</h5>
+      <div class="f-mkt" style="color:var(--crimson);">Communities</div>
+      <ul>
+        <li><a href="#">Woodbriar — Peters Township</a></li>
+        <li><a href="#">Autumn Grove — North Allegheny</a></li>
+        <li><a href="#">Spring Way — Seneca Valley</a></li>
+        <li><a href="#">Highland Reserve — Mt. Lebanon</a></li>
+      </ul>
+      <div class="f-mkt" style="color:#2BA6CB;margin-top:20px;">Philadelphia</div>
+      <ul>
+        <li><a href="#">Creekside at Malvern</a></li>
+        <li><a href="#">Fairfield Estates</a></li>
+        <li><a href="#">The Reserve at Devon</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="#">Find a Home</a></li>
+        <li><a href="#">Floor Plans</a></li>
+        <li><a href="#">EH Studio</a></li>
+        <li><a href="#">Build on Your Lot</a></li>
+        <li><a href="#">Quick Move-In</a></li>
+        <li><a href="#">Buying Process</a></li>
+        <li><a href="#">Neighborhood Guides</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">Why Eddy Homes</a></li>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Homeowner Portal</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="f-legal">&copy; 2026 Eddy Homes. All rights reserved. &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; Terms of Use</p>
+    <a href="tel:8888053339" class="f-phone">888-805-EDDY</a>
+    <div class="f-socials">
+      <a href="#" class="f-soc">&#9678;</a>
+      <a href="#" class="f-soc">f</a>
+      <a href="#" class="f-soc">P</a>
+      <a href="#" class="f-soc">▶</a>
+    </div>
+  </div>
+</footer>
+
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ─── NAV: goes solid on scroll ─── */
+  const nav = document.getElementById('main-nav');
+  ScrollTrigger.create({
+    start: 'top -80',
+    onUpdate: self => {
+      if (self.scroll() > 80) nav.classList.add('solid');
+      else nav.classList.remove('solid');
+    }
+  });
+
+  /* ─── HERO: clip-path reveal on load ─── */
+  const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+  heroTl
+    .to('#hero-headline', {
+      clipPath: 'inset(0 0 0% 0)',
+      y: 0,
+      duration: 1.4,
+      ease: 'power3.out'
+    }, 0.3)
+    .to('#hero-meta', { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, 0.9)
+    .to('#hero-scroll', { opacity: 1, duration: 0.6 }, 1.2);
+
+  /* ─── HERO: parallax image on scroll ─── */
+  gsap.to('#hero-img', {
+    yPercent: 22,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true
+    }
+  });
+
+  /* ─── SECTION LINES: scale in ─── */
+  ['#line-1','#line-2','#line-3','#line-4'].forEach(sel => {
+    gsap.to(sel, {
+      scaleX: 1,
+      duration: 1.4,
+      ease: 'power3.inOut',
+      scrollTrigger: { trigger: sel, start: 'top 88%', once: true }
+    });
+  });
+
+  /* ─── MANIFESTO: character-by-character reveal ─── */
+  (function() {
+    const label = document.getElementById('manifesto-label');
+    const body  = document.getElementById('manifesto-body');
+    const text  = body.textContent;
+
+    body.innerHTML = text.split('').map(ch =>
+      ch === ' ' ? '<span class="ch"> </span>' : `<span class="ch">${ch}</span>`
+    ).join('');
+
+    gsap.to(label, {
+      opacity: 1, y: 0, duration: 0.6,
+      scrollTrigger: { trigger: label, start: 'top 85%', once: true }
+    });
+
+    gsap.fromTo(body.querySelectorAll('.ch'),
+      { opacity: 0, y: 14 },
+      {
+        opacity: 1, y: 0,
+        stagger: 0.018,
+        duration: 0.55,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: body, start: 'top 80%', once: true }
+      }
+    );
+  })();
+
+  /* ─── CONCEPT SECTIONS: staggered reveal ─── */
+  function revealCS(num, imgId, numId, headId, bodyId, ctaId, fromLeft) {
+    const section  = document.getElementById(`cs-${num}`);
+    const imgEl    = document.getElementById(imgId);
+    const dir      = fromLeft ? -1 : 1;
+
+    gsap.fromTo(imgEl,
+      { x: dir * 60, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1.1, ease: 'power3.out',
+        scrollTrigger: { trigger: section, start: 'top 75%', once: true }
+      }
+    );
+
+    gsap.to(document.getElementById(numId), {
+      opacity: 1, x: 0, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: section, start: 'top 72%', once: true }
+    });
+
+    gsap.to(document.getElementById(headId), {
+      y: 0, duration: 1.0, ease: 'power3.out',
+      scrollTrigger: { trigger: section, start: 'top 72%', once: true, delay: 0.1 }
+    });
+
+    gsap.to(document.getElementById(bodyId), {
+      opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+      scrollTrigger: { trigger: section, start: 'top 68%', once: true }
+    });
+
+    gsap.to(document.getElementById(ctaId), {
+      opacity: 1, duration: 0.6, ease: 'power2.out',
+      scrollTrigger: { trigger: section, start: 'top 65%', once: true }
+    });
+
+    /* Parallax on section images */
+    gsap.to(imgEl, {
+      yPercent: 18,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+  }
+
+  revealCS(1, 'cs1-img', 'cs1-num', 'cs1-head', 'cs1-body', 'cs1-cta', true);
+  revealCS(2, 'cs2-img', 'cs2-num', 'cs2-head', 'cs2-body', 'cs2-cta', false);
+  revealCS(3, 'cs3-img', 'cs3-num', 'cs3-head', 'cs3-body', 'cs3-cta', true);
+  revealCS(4, 'cs4-img', 'cs4-num', 'cs4-head', 'cs4-body', 'cs4-cta', false);
+
+  /* ─── FULL-BLEED QUOTE: parallax + reveal ─── */
+  gsap.to('#quote-bg', {
+    yPercent: 18,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.quote-section',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true
+    }
+  });
+
+  gsap.to('#quote-text', {
+    clipPath: 'inset(0 0 0% 0)',
+    duration: 1.3, ease: 'power3.out',
+    scrollTrigger: { trigger: '.quote-section', start: 'top 70%', once: true }
+  });
+
+  gsap.to('#quote-attr', {
+    opacity: 1, duration: 0.8, ease: 'power2.out', delay: 0.4,
+    scrollTrigger: { trigger: '.quote-section', start: 'top 65%', once: true }
+  });
+
+  /* ─── QMI ROWS: stagger in ─── */
+  gsap.to('.qmi-row', {
+    opacity: 1,
+    x: 0,
+    stagger: 0.12,
+    duration: 0.75,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: '.qmi-section', start: 'top 75%', once: true }
+  });
+
+  /* ─── COMMUNITY CARDS: stagger in ─── */
+  gsap.to('.community-card', {
+    opacity: 1,
+    y: 0,
+    stagger: 0.09,
+    duration: 0.75,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: '.community-grid', start: 'top 80%', once: true }
+  });
+
+  /* ─── FILTER: community grid ─── */
+  function filterCommunities(market, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.community-card').forEach(card => {
+      const show = market === 'all' || card.dataset.market === market;
+      card.style.display = show ? '' : 'none';
+    });
+  }
+
+  /* ─── MARKET TOGGLE ─── */
+  function setMkt(mkt, btn) {
+    document.querySelectorAll('.mkt-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

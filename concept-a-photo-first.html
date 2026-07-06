@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eddy Homes — Life. Well Built. (Concept A)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root {
+  --crimson: #821517;
+  --blue: #2BA6CB;
+  --gray-dark: #5B5B5B;
+  --gray-light: #E4E4E4;
+  --black: #1a1a1a;
+  --white: #fff;
+  --cream: #f8f6f2;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Nunito Sans', sans-serif; color: var(--black); background: var(--white); }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 72px;
+  background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+.nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--black); }
+.nav-logo .mono { font-family: 'Pinyon Script', cursive; font-size: 34px; line-height: 1; }
+.nav-logo .word { font-size: 12px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; display: block; }
+.nav-logo .since { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-dark); display: block; margin-top: 2px; }
+.market-toggle { display: flex; background: var(--gray-light); border-radius: 100px; padding: 3px; }
+.market-toggle button { background: none; border: none; cursor: pointer; padding: 6px 18px; border-radius: 100px; font-family: 'Nunito Sans', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: var(--gray-dark); transition: all 0.2s; }
+.market-toggle button.active { background: var(--black); color: var(--white); }
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a { text-decoration: none; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--black); transition: color 0.2s; }
+.nav-links a:hover { color: var(--crimson); }
+.nav-end { display: flex; align-items: center; gap: 20px; }
+.btn-realtor { padding: 9px 22px; border: 1.5px solid var(--black); background: none; cursor: pointer; font-family: 'Nunito Sans', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--black); text-decoration: none; transition: all 0.22s; display: inline-block; }
+.btn-realtor:hover { background: var(--black); color: var(--white); }
+
+/* HERO */
+.hero { position: relative; height: 100vh; min-height: 680px; display: flex; align-items: flex-end; overflow: hidden; }
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0.62) 75%, rgba(0,0,0,0.82) 100%),
+    linear-gradient(160deg, #a8c0c8 0%, #8fa8b0 10%, #c4b49a 22%, #a89070 36%, #8b7355 50%, #6b5a3e 64%, #4a3728 78%, #3c2e20 100%);
+}
+.hero-bg::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 28% 55%, rgba(180,155,110,0.35) 0%, transparent 48%),
+    radial-gradient(ellipse at 72% 35%, rgba(120,150,165,0.25) 0%, transparent 38%);
+}
+.hero-content { position: relative; z-index: 2; padding: 0 80px 88px; max-width: 820px; }
+.hero-eyebrow { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 22px; font-weight: 600; animation: fadeUp 0.8s 0.2s forwards; opacity: 0; }
+.hero-headline { font-size: clamp(60px, 9vw, 108px); font-weight: 300; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); line-height: 0.95; margin-bottom: 30px; animation: fadeUp 0.8s 0.4s forwards; opacity: 0; }
+.hero-sub { font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.75; max-width: 460px; margin-bottom: 44px; font-weight: 300; animation: fadeUp 0.8s 0.6s forwards; opacity: 0; }
+.hero-ctas { display: flex; gap: 14px; animation: fadeUp 0.8s 0.8s forwards; opacity: 0; }
+.btn-hero-primary { display: inline-block; padding: 17px 40px; background: var(--white); color: var(--black); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; text-decoration: none; transition: all 0.22s; }
+.btn-hero-primary:hover { background: var(--crimson); color: var(--white); }
+.btn-hero-secondary { display: inline-block; padding: 17px 40px; background: transparent; color: var(--white); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.55); transition: all 0.22s; }
+.btn-hero-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.12); }
+
+/* QMI STRIP */
+.qmi { background: #1c1c1c; padding: 52px 80px; }
+.qmi-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; }
+.qmi-label-wrap { display: flex; align-items: center; gap: 14px; }
+.qmi-pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--crimson); position: relative; }
+.qmi-pulse::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--crimson); opacity: 0.4; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.4; } 50% { transform: scale(1.4); opacity: 0; } }
+.qmi-title { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 700; color: var(--white); }
+.qmi-subtitle { font-size: 10px; color: rgba(255,255,255,0.42); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 3px; }
+.qmi-all { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: rgba(255,255,255,0.42); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px; transition: color 0.2s; }
+.qmi-all:hover { color: var(--white); }
+.qmi-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.qmi-card { background: #252525; padding: 34px; cursor: pointer; transition: background 0.2s; }
+.qmi-card:hover { background: #2e2e2e; }
+.qmi-badge { display: inline-block; padding: 4px 12px; background: var(--crimson); color: var(--white); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; margin-bottom: 22px; }
+.qmi-name { font-size: 20px; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); margin-bottom: 6px; }
+.qmi-loc { font-size: 11px; color: rgba(255,255,255,0.45); margin-bottom: 26px; }
+.qmi-specs { display: flex; gap: 22px; margin-bottom: 26px; }
+.spec-v { font-size: 18px; font-weight: 600; color: var(--white); display: block; }
+.spec-l { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); display: block; margin-top: 3px; }
+.qmi-foot { display: flex; align-items: flex-end; justify-content: space-between; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.09); }
+.qmi-price { font-size: 19px; font-weight: 300; color: var(--white); }
+.qmi-movein { font-size: 9px; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 5px; }
+.qmi-cta { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.25); padding-bottom: 2px; transition: border-color 0.2s; }
+.qmi-cta:hover { border-color: var(--white); }
+
+/* PATHS */
+.paths { padding: 88px 80px; background: var(--cream); }
+.sec-label { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 700; color: var(--crimson); margin-bottom: 14px; }
+.sec-title { font-size: clamp(26px, 3vw, 38px); font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); margin-bottom: 52px; }
+.path-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.path-card { position: relative; padding: 52px 40px 48px; background: var(--white); cursor: pointer; overflow: hidden; text-decoration: none; color: var(--black); display: block; transition: background 0.25s; }
+.path-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--crimson); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+.path-card:hover::after { transform: scaleX(1); }
+.path-card:hover { background: #fdfdfd; }
+.path-num { font-family: 'Pinyon Script', cursive; font-size: 52px; color: rgba(0,0,0,0.07); line-height: 1; margin-bottom: 28px; display: block; }
+.path-title { font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; }
+.path-desc { font-size: 13px; color: var(--gray-dark); line-height: 1.75; margin-bottom: 36px; }
+.path-link { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--crimson); }
+
+/* TRUST BAR */
+.trust { background: var(--black); padding: 36px 80px; display: flex; align-items: center; justify-content: space-between; gap: 0; }
+.trust-item { text-align: center; flex: 1; }
+.trust-val { font-size: 22px; font-weight: 700; color: var(--white); letter-spacing: 0.04em; display: block; }
+.trust-lbl { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-top: 5px; display: block; line-height: 1.5; }
+.trust-sep { width: 1px; height: 36px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+
+/* COMMUNITY SPOTLIGHT */
+.communities { padding: 88px 80px; background: var(--white); }
+.comm-grid { display: grid; grid-template-columns: 3fr 2fr; grid-template-rows: 1fr 1fr; gap: 3px; margin-top: 36px; height: 580px; }
+.comm-card { position: relative; overflow: hidden; cursor: pointer; }
+.comm-card:first-child { grid-row: 1 / 3; }
+.comm-bg { position: absolute; inset: 0; transition: transform 0.6s ease; }
+.comm-card:hover .comm-bg { transform: scale(1.04); }
+.comm-bg-a { background: linear-gradient(145deg, #a89070 0%, #8b7355 28%, #6b5a3e 54%, #4a3728 78%, #3c2e20 100%); }
+.comm-bg-b { background: linear-gradient(145deg, #92a8b8 0%, #7a9aad 30%, #5a7a8e 58%, #3d6070 100%); }
+.comm-bg-c { background: linear-gradient(145deg, #bba882 0%, #9c8c66 30%, #806e4a 60%, #5c4e34 100%); }
+.comm-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.1) 55%, transparent 100%); }
+.comm-info { position: absolute; bottom: 28px; left: 28px; right: 28px; z-index: 2; }
+.comm-district { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.58); margin-bottom: 5px; }
+.comm-name { font-size: 20px; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); margin-bottom: 5px; }
+.comm-detail { font-size: 11px; color: rgba(255,255,255,0.52); }
+.comm-card:first-child .comm-name { font-size: 28px; }
+
+/* EH STUDIO TEASER */
+.studio { padding: 88px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; background: var(--cream); }
+.studio-visual { height: 460px; position: relative; overflow: hidden; }
+.studio-img { position: absolute; inset: 0; background: linear-gradient(135deg, #d4c4a8 0%, #c2ae8c 20%, #a8916a 40%, #8b7252 60%, #705a3e 80%, #5a472e 100%); }
+.studio-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 60%); }
+.studio-accent { position: absolute; top: 28px; right: -1px; width: 4px; height: 80px; background: var(--crimson); }
+.studio-text {}
+.studio-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 700; color: var(--crimson); margin-bottom: 16px; }
+.studio-heading { font-size: clamp(30px, 3.5vw, 44px); font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.1; margin-bottom: 24px; }
+.studio-body { font-size: 14px; color: var(--gray-dark); line-height: 1.8; margin-bottom: 16px; }
+.studio-detail { font-size: 12px; color: var(--gray-dark); line-height: 1.75; margin-bottom: 40px; }
+.studio-detail strong { color: var(--black); font-weight: 600; }
+.btn-studio { display: inline-block; padding: 15px 36px; background: var(--black); color: var(--white); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; text-decoration: none; transition: background 0.22s; }
+.btn-studio:hover { background: var(--crimson); }
+
+/* FOOTER */
+footer { background: var(--black); padding: 68px 80px 40px; }
+.foot-top { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 52px; margin-bottom: 60px; }
+.foot-mono { font-family: 'Pinyon Script', cursive; font-size: 44px; color: var(--white); display: block; margin-bottom: 10px; }
+.foot-word { font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 700; color: var(--white); display: block; }
+.foot-tagline { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 12px; line-height: 1.7; }
+.foot-realtor-btn { margin-top: 22px; display: inline-block; padding: 11px 20px; border: 1px solid rgba(255,255,255,0.22); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--white); text-decoration: none; transition: all 0.22s; }
+.foot-realtor-btn:hover { background: var(--white); color: var(--black); }
+.foot-col-title { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 700; color: var(--white); margin-bottom: 20px; }
+.foot-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.foot-links a { text-decoration: none; font-size: 12px; color: rgba(255,255,255,0.46); transition: color 0.2s; }
+.foot-links a:hover { color: var(--white); }
+.foot-links .highlight { color: rgba(255,255,255,0.78) !important; font-weight: 600; }
+.foot-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: rgba(255,255,255,0.32); }
+.foot-phone { color: rgba(255,255,255,0.7); font-weight: 600; letter-spacing: 0.04em; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 1100px) {
+  nav { padding: 0 28px; }
+  .nav-links { gap: 20px; }
+  .hero-content, .qmi, .paths, .trust, .communities, .studio, footer { padding-left: 32px; padding-right: 32px; }
+  .qmi-cards, .path-grid { grid-template-columns: 1fr; }
+  .comm-grid { grid-template-columns: 1fr; height: auto; }
+  .comm-card:first-child { grid-row: auto; min-height: 320px; }
+  .comm-card:not(:first-child) { min-height: 220px; }
+  .studio { grid-template-columns: 1fr; }
+  .foot-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  nav { padding: 0 18px; }
+  .nav-links { display: none; }
+  .hero-content { padding: 0 20px 52px; }
+  .qmi, .paths, .trust, .communities, .studio, footer { padding-left: 20px; padding-right: 20px; }
+  .trust { flex-wrap: wrap; justify-content: center; gap: 24px; }
+  .trust-sep { display: none; }
+  .foot-top { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="mono">𝓔𝓗</span>
+    <span>
+      <span class="word">Eddy Homes</span>
+      <span class="since">Since 1971</span>
+    </span>
+  </a>
+  <div class="market-toggle">
+    <button class="active" onclick="toggleMarket(this)">Pittsburgh</button>
+    <button onclick="toggleMarket(this)">Philadelphia</button>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Find a Home</a></li>
+    <li><a href="#">Floor Plans</a></li>
+    <li><a href="#">EH Studio</a></li>
+    <li><a href="#">Build on Your Lot</a></li>
+    <li><a href="#">Why Eddy</a></li>
+  </ul>
+  <div class="nav-end">
+    <a href="#" class="btn-realtor">For Realtors</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Pittsburgh &amp; Philadelphia · Family-Owned Since 1971</p>
+    <h1 class="hero-headline">Life.<br>Well Built.</h1>
+    <p class="hero-sub">Every home designed with an NCIDQ-accredited Design Consultant — at no additional cost. Building across North Allegheny, Peters Township, Seneca Valley, and beyond.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-hero-primary">Find a Community</a>
+      <a href="#" class="btn-hero-secondary">Explore Floor Plans</a>
+    </div>
+  </div>
+</section>
+
+<!-- QMI STRIP -->
+<section class="qmi">
+  <div class="qmi-head">
+    <div class="qmi-label-wrap">
+      <div class="qmi-pulse"></div>
+      <div>
+        <div class="qmi-title">Quick Move-In Homes</div>
+        <div class="qmi-subtitle">Already under construction · 30–90 day move-in</div>
+      </div>
+    </div>
+    <a href="#" class="qmi-all">View All Available →</a>
+  </div>
+  <div class="qmi-cards">
+    <div class="qmi-card">
+      <span class="qmi-badge">Move-In Ready</span>
+      <div class="qmi-name">The Bowmore</div>
+      <div class="qmi-loc">Woodbriar · Peters Township School District</div>
+      <div class="qmi-specs">
+        <div><span class="spec-v">4</span><span class="spec-l">Beds</span></div>
+        <div><span class="spec-v">2.5</span><span class="spec-l">Baths</span></div>
+        <div><span class="spec-v">3,734</span><span class="spec-l">Sq Ft</span></div>
+        <div><span class="spec-v">3-Car</span><span class="spec-l">Garage</span></div>
+      </div>
+      <div class="qmi-foot">
+        <div><div class="qmi-price">$1,149,900</div><div class="qmi-movein">Move-in: August 2026</div></div>
+        <a href="#" class="qmi-cta">View Home →</a>
+      </div>
+    </div>
+    <div class="qmi-card">
+      <span class="qmi-badge">Under Construction</span>
+      <div class="qmi-name">The Rosebank</div>
+      <div class="qmi-loc">Autumn Grove · North Allegheny School District</div>
+      <div class="qmi-specs">
+        <div><span class="spec-v">4</span><span class="spec-l">Beds</span></div>
+        <div><span class="spec-v">3</span><span class="spec-l">Baths</span></div>
+        <div><span class="spec-v">3,180</span><span class="spec-l">Sq Ft</span></div>
+        <div><span class="spec-v">2-Car</span><span class="spec-l">Garage</span></div>
+      </div>
+      <div class="qmi-foot">
+        <div><div class="qmi-price">$879,900</div><div class="qmi-movein">Move-in: September 2026</div></div>
+        <a href="#" class="qmi-cta">View Home →</a>
+      </div>
+    </div>
+    <div class="qmi-card">
+      <span class="qmi-badge">Under Construction</span>
+      <div class="qmi-name">The Windsor</div>
+      <div class="qmi-loc">Spring Way · Seneca Valley School District</div>
+      <div class="qmi-specs">
+        <div><span class="spec-v">5</span><span class="spec-l">Beds</span></div>
+        <div><span class="spec-v">3.5</span><span class="spec-l">Baths</span></div>
+        <div><span class="spec-v">4,120</span><span class="spec-l">Sq Ft</span></div>
+        <div><span class="spec-v">3-Car</span><span class="spec-l">Garage</span></div>
+      </div>
+      <div class="qmi-foot">
+        <div><div class="qmi-price">$1,079,900</div><div class="qmi-movein">Move-in: October 2026</div></div>
+        <a href="#" class="qmi-cta">View Home →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATHS -->
+<section class="paths">
+  <p class="sec-label">Where Would You Like to Begin?</p>
+  <h2 class="sec-title">Three ways to find your Eddy home</h2>
+  <div class="path-grid">
+    <a href="#" class="path-card">
+      <span class="path-num">01</span>
+      <div class="path-title">Find a Community</div>
+      <p class="path-desc">You know the school district. You know the area. Browse communities by location — North Allegheny, Peters Township, Seneca Valley, Downingtown Area, and more. Filter by price and availability.</p>
+      <span class="path-link">Browse Communities →</span>
+    </a>
+    <a href="#" class="path-card">
+      <span class="path-num">02</span>
+      <div class="path-title">Explore Floor Plans</div>
+      <p class="path-desc">The home comes first. Browse our named floor plan catalogue from $424K — Bowmore, Rosebank, Windsor, and more. Every plan personalised at the EH Studio with an NCIDQ-accredited designer, at no extra cost.</p>
+      <span class="path-link">Browse Floor Plans →</span>
+    </a>
+    <a href="#" class="path-card">
+      <span class="path-num">03</span>
+      <div class="path-title">Build on Your Lot</div>
+      <p class="path-desc">You have land. Eddy Everywhere brings 50 years of Pittsburgh craftsmanship to your property — anywhere in Greater Pittsburgh or Greater Philadelphia. Most site evaluations completed within two weeks.</p>
+      <span class="path-link">Learn About Eddy Everywhere →</span>
+    </a>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-item"><span class="trust-val">50+</span><span class="trust-lbl">Years Building</span></div>
+  <div class="trust-sep"></div>
+  <div class="trust-item"><span class="trust-val">Family</span><span class="trust-lbl">Owned &amp; Operated</span></div>
+  <div class="trust-sep"></div>
+  <div class="trust-item"><span class="trust-val">6×</span><span class="trust-lbl">Pittsburgh Magazine<br>Best Homebuilder</span></div>
+  <div class="trust-sep"></div>
+  <div class="trust-item"><span class="trust-val">Gold</span><span class="trust-lbl">Philly Favorites<br>2025–2026</span></div>
+  <div class="trust-sep"></div>
+  <div class="trust-item"><span class="trust-val">GuildQuality</span><span class="trust-lbl">Verified Reviews</span></div>
+  <div class="trust-sep"></div>
+  <div class="trust-item"><span class="trust-val">Fast 50</span><span class="trust-lbl">Pittsburgh Business Times<br>22nd Place</span></div>
+</div>
+
+<!-- COMMUNITY SPOTLIGHT -->
+<section class="communities">
+  <p class="sec-label">Featured Communities</p>
+  <h2 class="sec-title">Building where you want to live</h2>
+  <div class="comm-grid">
+    <div class="comm-card">
+      <div class="comm-bg comm-bg-a"></div>
+      <div class="comm-overlay"></div>
+      <div class="comm-info">
+        <div class="comm-district">Peters Township School District · Venetia, PA</div>
+        <div class="comm-name">Woodbriar</div>
+        <div class="comm-detail">Private homesites · Homes from the upper $700s · Now Selling</div>
+      </div>
+    </div>
+    <div class="comm-card">
+      <div class="comm-bg comm-bg-b"></div>
+      <div class="comm-overlay"></div>
+      <div class="comm-info">
+        <div class="comm-district">North Allegheny School District · Marshall Township</div>
+        <div class="comm-name">Autumn Grove</div>
+        <div class="comm-detail">Homes from $699K · Cul-de-sac setting</div>
+      </div>
+    </div>
+    <div class="comm-card">
+      <div class="comm-bg comm-bg-c"></div>
+      <div class="comm-overlay"></div>
+      <div class="comm-info">
+        <div class="comm-district">Seneca Valley School District · Cranberry Township</div>
+        <div class="comm-name">Spring Way</div>
+        <div class="comm-detail">Homes from $550K · Quick Move-In Available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EH STUDIO TEASER -->
+<section class="studio">
+  <div class="studio-visual">
+    <div class="studio-img"></div>
+    <div class="studio-accent"></div>
+  </div>
+  <div class="studio-text">
+    <p class="studio-eyebrow">EH Studio</p>
+    <h2 class="studio-heading">Every detail,<br>yours.</h2>
+    <p class="studio-body">The EH Studio is where floor plans become homes. Work one-on-one with an NCIDQ-accredited Design Consultant to choose from over 1,500 selections — cabinetry, countertops, flooring, fixtures, and more.</p>
+    <p class="studio-detail">Three curated design collections serve as your starting point: <strong>Traditional</strong>, <strong>Transitional</strong>, and <strong>Contemporary</strong>. Each is a complete vision, not just a list of options. The Studio experience is included with every Eddy home — at no additional cost.</p>
+    <a href="#" class="btn-studio">Explore EH Studio →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div>
+      <span class="foot-mono">𝓔𝓗</span>
+      <span class="foot-word">Eddy Homes</span>
+      <p class="foot-tagline">Building Pittsburgh and Philadelphia<br>since 1971. Family-owned and operated.</p>
+      <a href="#" class="foot-realtor-btn">For Realtors: Register a Client →</a>
+    </div>
+    <div>
+      <div class="foot-col-title">Pittsburgh Communities</div>
+      <ul class="foot-links">
+        <li><a href="#">Autumn Grove — North Allegheny</a></li>
+        <li><a href="#">Spring Way — Seneca Valley</a></li>
+        <li><a href="#">Woodbriar — Peters Township</a></li>
+        <li><a href="#">Piatt Estates — North Allegheny</a></li>
+        <li><a href="#">Summerwind — South Fayette</a></li>
+        <li><a href="#" class="highlight">All Pittsburgh Communities →</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-col-title">Philadelphia Communities</div>
+      <ul class="foot-links">
+        <li><a href="#">Kirkland Station — Downingtown</a></li>
+        <li><a href="#">Briarwood — West Chester</a></li>
+        <li><a href="#">Bronson Estates — Downingtown</a></li>
+        <li><a href="#">Cedar View — Chester County</a></li>
+        <li><a href="#">Oakwood — West Chester Area</a></li>
+        <li><a href="#" class="highlight">All Philadelphia Communities →</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-col-title">Quick Links</div>
+      <ul class="foot-links">
+        <li><a href="#">Quick Move-In Homes</a></li>
+        <li><a href="#">All Floor Plans</a></li>
+        <li><a href="#">EH Studio</a></li>
+        <li><a href="#">Eddy Everywhere</a></li>
+        <li><a href="#">Why Eddy</a></li>
+        <li><a href="#" class="highlight">Realtor Portal →</a></li>
+        <li><a href="#">Homeowner Portal</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Eddy Homes, Inc. · 242 Station St., Pittsburgh, PA 15017</span>
+    <span class="foot-phone">888-805-EDDY (3339)</span>
+    <span>Privacy · Careers · Builder's Journal</span>
+  </div>
+</footer>
+
+<script>
+function toggleMarket(btn) {
+  document.querySelectorAll('.market-toggle button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
