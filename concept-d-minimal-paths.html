@@ -216,8 +216,8 @@
       /* GSAP controls flex-basis; CSS just sets initial + layout */
       flex-basis: 25%;
       flex-shrink: 0;
-      background: var(--panel-rest);
-      border-right: 1px solid var(--border);
+      background: #1a1612; /* fallback */
+      border-right: 1px solid rgba(255,255,255,0.1);
       position: relative;
       overflow: hidden;
       cursor: pointer;
@@ -231,6 +231,67 @@
 
     .path-panel:last-child { border-right: none; }
 
+    /* Background image placeholder */
+    .panel-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      transform-origin: center;
+      will-change: transform;
+    }
+
+    .panel-img.img-gl {
+      /* Aerial neighborhood — warm greens, suburban rooftops */
+      background: linear-gradient(
+        148deg,
+        #243020 0%, #3a4e30 14%, #527044 28%,
+        #6a8a5a 40%, #849e72 52%, #9ab088 62%,
+        #82966c 74%, #647854 85%, #4a5c3e 94%, #323e28 100%
+      );
+    }
+
+    .panel-img.img-df {
+      /* Interior — warm oak cabinetry, marble, kitchen light */
+      background: linear-gradient(
+        155deg,
+        #3a2818 0%, #604232 16%, #90685a 30%,
+        #c09888 44%, #dcc0a8 56%, #c8a890 66%,
+        #a88070 78%, #7a5848 90%, #503828 100%
+      );
+    }
+
+    .panel-img.img-tl {
+      /* Exterior home front — warm stone, brick, afternoon light */
+      background: linear-gradient(
+        140deg,
+        #281c10 0%, #483020 16%, #705040 30%,
+        #987060 44%, #b88e78 56%, #c8a090 65%,
+        #a07a62 76%, #785248 87%, #503428 96%, #32201a 100%
+      );
+    }
+
+    .panel-img.img-th {
+      /* Professional/architectural — cool slate, glass tower */
+      background: linear-gradient(
+        138deg,
+        #18202c 0%, #283040 14%, #3c4a60 28%,
+        #526078 42%, #687490 54%, #7e88a0 65%,
+        #667490 76%, #4e5c78 87%, #343e58 95%, #20283c 100%
+      );
+    }
+
+    /* Darkness overlay — GSAP animates opacity */
+    .panel-overlay {
+      position: absolute;
+      inset: 0;
+      background: #0a0806;
+      opacity: 0.52;
+      z-index: 1;
+      will-change: opacity;
+    }
+
     /* Giant background numeral */
     .panel-bg-num {
       position: absolute;
@@ -239,12 +300,13 @@
       transform: translate(-50%, -50%);
       font-size: 28vw;
       font-weight: 700;
-      color: rgba(15,15,15,0.038);
+      color: rgba(255,255,255,0.06);
       line-height: 1;
       pointer-events: none;
       user-select: none;
       letter-spacing: -0.04em;
       white-space: nowrap;
+      z-index: 2;
     }
 
     /* Crimson accent bar along top — GSAP scales in */
@@ -255,28 +317,35 @@
       background: var(--crimson);
       transform: scaleX(0);
       transform-origin: left center;
+      z-index: 5;
     }
 
     .panel-index {
+      position: relative;
+      z-index: 3;
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: rgba(15,15,15,0.28);
+      color: rgba(255,255,255,0.5);
       margin-bottom: 16px;
     }
 
     .panel-title {
+      position: relative;
+      z-index: 3;
       font-size: clamp(15px, 1.7vw, 22px);
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--black);
+      color: rgba(255,255,255,0.92);
       line-height: 1.2;
     }
 
     /* Hidden until panel expands — GSAP fades/slides in */
     .panel-detail {
+      position: relative;
+      z-index: 3;
       opacity: 0;
       transform: translateY(14px);
       margin-top: 20px;
@@ -285,7 +354,7 @@
 
     .panel-desc {
       font-size: 13px;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.65);
       font-weight: 300;
       line-height: 1.72;
       margin-bottom: 24px;
@@ -636,13 +705,15 @@
       .hl-meta { text-align: left; max-width: 100%; }
       /* Stack panels vertically on mobile */
       .panels-wrap { flex-direction: column; height: auto; }
-      .path-panel { flex-basis: auto !important; min-height: 180px; border-right: none; border-bottom: 1px solid var(--border); }
+      .path-panel { flex-basis: auto !important; min-height: 200px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
       .path-panel:last-child { border-bottom: none; }
       .panel-bg-num { display: none; }
+      /* On mobile, lighten overlay so images show more */
+      .panel-overlay { opacity: 0.45; }
       /* Always show detail on mobile */
       .panel-detail { opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
-      .panel-desc { color: var(--gray); }
-      .panel-cta { color: var(--crimson); border-color: rgba(130,21,23,0.3); }
+      .panel-desc { color: rgba(255,255,255,0.65); }
+      .panel-cta { color: #fff; border-color: rgba(255,255,255,0.35); }
       .qmi-section { padding: 48px 20px; }
       .qmi-table th:nth-child(n+3),
       .qmi-table td:nth-child(n+3) { display: none; }
@@ -698,6 +769,8 @@
 
     <!-- 01: Geography-Led -->
     <div class="path-panel" id="panel-0">
+      <div class="panel-img img-gl"></div>
+      <div class="panel-overlay"></div>
       <div class="panel-bg-num">01</div>
       <div class="panel-accent"></div>
       <div class="panel-index">01 — By Location</div>
@@ -710,6 +783,8 @@
 
     <!-- 02: Design-First -->
     <div class="path-panel" id="panel-1">
+      <div class="panel-img img-df"></div>
+      <div class="panel-overlay"></div>
       <div class="panel-bg-num">02</div>
       <div class="panel-accent"></div>
       <div class="panel-index">02 — By Design</div>
@@ -722,6 +797,8 @@
 
     <!-- 03: Timing-Led / QMI -->
     <div class="path-panel" id="panel-2">
+      <div class="panel-img img-tl"></div>
+      <div class="panel-overlay"></div>
       <div class="panel-bg-num">03</div>
       <div class="panel-accent"></div>
       <div class="panel-index">03 — By Timeline</div>
@@ -734,6 +811,8 @@
 
     <!-- 04: Realtor Partner -->
     <div class="path-panel" id="panel-3">
+      <div class="panel-img img-th"></div>
+      <div class="panel-overlay"></div>
       <div class="panel-bg-num">04</div>
       <div class="panel-accent"></div>
       <div class="panel-index">04 — For Realtors</div>
@@ -926,10 +1005,6 @@
     const COLLAPSED = '17.33%';
     const NORMAL    = '25%';
 
-    const DARK_BG   = '#0f0f0f';
-    const REST_BG   = '#f2efe9';
-    const DIM_BG    = '#ebe8e2';
-
     panels.forEach((panel, i) => {
       /* Cursor parallax on background numeral */
       panel.addEventListener('mousemove', e => {
@@ -952,22 +1027,28 @@
             duration: 0.6, ease: 'power3.inOut'
           });
 
-          /* Background */
-          gsap.to(p, {
-            backgroundColor: active ? DARK_BG : DIM_BG,
-            duration: 0.42, ease: 'power2.inOut'
+          /* Overlay: darker on active, lighter on collapsed */
+          gsap.to(p.querySelector('.panel-overlay'), {
+            opacity: active ? 0.74 : 0.38,
+            duration: 0.45, ease: 'power2.inOut'
           });
 
-          /* Index label */
+          /* Image: subtle scale on expand, unscale on collapse */
+          gsap.to(p.querySelector('.panel-img'), {
+            scale: active ? 1.06 : 1.0,
+            duration: 0.65, ease: 'power3.out'
+          });
+
+          /* Index label: bright on active, dim on collapsed */
           gsap.to(p.querySelector('.panel-index'), {
-            color: active ? 'rgba(255,255,255,0.3)' : 'rgba(15,15,15,0.2)',
-            duration: 0.28
+            opacity: active ? 0.9 : 0.35,
+            duration: 0.3
           });
 
-          /* Title */
+          /* Title: full white on active, dim on collapsed */
           gsap.to(p.querySelector('.panel-title'), {
-            color: active ? '#ffffff' : 'rgba(15,15,15,0.55)',
-            duration: 0.28
+            opacity: active ? 1.0 : 0.45,
+            duration: 0.3
           });
 
           /* Crimson accent bar */
@@ -1001,9 +1082,10 @@
     wrap.addEventListener('mouseleave', () => {
       panels.forEach(p => {
         gsap.to(p, { flexBasis: NORMAL, duration: 0.55, ease: 'power3.inOut' });
-        gsap.to(p, { backgroundColor: REST_BG, duration: 0.42, ease: 'power2.inOut' });
-        gsap.to(p.querySelector('.panel-index'), { color: 'rgba(15,15,15,0.28)', duration: 0.35 });
-        gsap.to(p.querySelector('.panel-title'), { color: '#0f0f0f', duration: 0.35 });
+        gsap.to(p.querySelector('.panel-overlay'), { opacity: 0.52, duration: 0.45, ease: 'power2.inOut' });
+        gsap.to(p.querySelector('.panel-img'), { scale: 1.0, duration: 0.55, ease: 'power3.out' });
+        gsap.to(p.querySelector('.panel-index'), { opacity: 1, duration: 0.35 });
+        gsap.to(p.querySelector('.panel-title'), { opacity: 1, duration: 0.35 });
         gsap.to(p.querySelector('.panel-accent'), { scaleX: 0, duration: 0.3, ease: 'power2.in' });
         gsap.to(p.querySelector('.panel-detail'), { opacity: 0, y: 14, duration: 0.25 });
         gsap.set(p.querySelector('.panel-detail'), { pointerEvents: 'none' });
