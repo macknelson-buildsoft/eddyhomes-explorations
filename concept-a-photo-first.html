@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
 :root {
-  --crimson: #821517;
+  --sage: #5b6e46;
   --blue: #2BA6CB;
   --gray-dark: #5B5B5B;
   --gray-light: #E4E4E4;
@@ -37,7 +37,7 @@ nav {
 .market-toggle button.active { background: var(--black); color: var(--white); }
 .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
 .nav-links a { text-decoration: none; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--black); transition: color 0.2s; }
-.nav-links a:hover { color: var(--crimson); }
+.nav-links a:hover { color: var(--sage); }
 .nav-end { display: flex; align-items: center; gap: 20px; }
 .btn-realtor { padding: 9px 22px; border: 1.5px solid var(--black); background: none; cursor: pointer; font-family: 'Nunito Sans', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--black); text-decoration: none; transition: all 0.22s; display: inline-block; }
 .btn-realtor:hover { background: var(--black); color: var(--white); }
@@ -62,7 +62,7 @@ nav {
 .hero-sub { font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.75; max-width: 460px; margin-bottom: 44px; font-weight: 300; animation: fadeUp 0.8s 0.6s forwards; opacity: 0; }
 .hero-ctas { display: flex; gap: 14px; animation: fadeUp 0.8s 0.8s forwards; opacity: 0; }
 .btn-hero-primary { display: inline-block; padding: 17px 40px; background: var(--white); color: var(--black); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; text-decoration: none; transition: all 0.22s; }
-.btn-hero-primary:hover { background: var(--crimson); color: var(--white); }
+.btn-hero-primary:hover { background: var(--sage); color: var(--white); }
 .btn-hero-secondary { display: inline-block; padding: 17px 40px; background: transparent; color: var(--white); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.55); transition: all 0.22s; }
 .btn-hero-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.12); }
 
@@ -70,8 +70,8 @@ nav {
 .qmi { background: #1c1c1c; padding: 52px 80px; }
 .qmi-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; }
 .qmi-label-wrap { display: flex; align-items: center; gap: 14px; }
-.qmi-pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--crimson); position: relative; }
-.qmi-pulse::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--crimson); opacity: 0.4; animation: pulse 2s infinite; }
+.qmi-pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--sage); position: relative; }
+.qmi-pulse::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--sage); opacity: 0.4; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.4; } 50% { transform: scale(1.4); opacity: 0; } }
 .qmi-title { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 700; color: var(--white); }
 .qmi-subtitle { font-size: 10px; color: rgba(255,255,255,0.42); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 3px; }
@@ -80,7 +80,7 @@ nav {
 .qmi-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
 .qmi-card { background: #252525; padding: 34px; cursor: pointer; transition: background 0.2s; }
 .qmi-card:hover { background: #2e2e2e; }
-.qmi-badge { display: inline-block; padding: 4px 12px; background: var(--crimson); color: var(--white); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; margin-bottom: 22px; }
+.qmi-badge { display: inline-block; padding: 4px 12px; background: var(--sage); color: var(--white); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; margin-bottom: 22px; }
 .qmi-name { font-size: 20px; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); margin-bottom: 6px; }
 .qmi-loc { font-size: 11px; color: rgba(255,255,255,0.45); margin-bottom: 26px; }
 .qmi-specs { display: flex; gap: 22px; margin-bottom: 26px; }
@@ -94,17 +94,17 @@ nav {
 
 /* PATHS */
 .paths { padding: 88px 80px; background: var(--cream); }
-.sec-label { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 700; color: var(--crimson); margin-bottom: 14px; }
+.sec-label { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 700; color: var(--sage); margin-bottom: 14px; }
 .sec-title { font-size: clamp(26px, 3vw, 38px); font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); margin-bottom: 52px; }
 .path-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
 .path-card { position: relative; padding: 52px 40px 48px; background: var(--white); cursor: pointer; overflow: hidden; text-decoration: none; color: var(--black); display: block; transition: background 0.25s; }
-.path-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--crimson); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+.path-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--sage); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
 .path-card:hover::after { transform: scaleX(1); }
 .path-card:hover { background: #fdfdfd; }
 .path-num { font-family: 'Pinyon Script', cursive; font-size: 52px; color: rgba(0,0,0,0.07); line-height: 1; margin-bottom: 28px; display: block; }
 .path-title { font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; }
 .path-desc { font-size: 13px; color: var(--gray-dark); line-height: 1.75; margin-bottom: 36px; }
-.path-link { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--crimson); }
+.path-link { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--sage); }
 
 /* TRUST BAR */
 .trust { background: var(--black); padding: 36px 80px; display: flex; align-items: center; justify-content: space-between; gap: 0; }
@@ -135,15 +135,15 @@ nav {
 .studio-visual { height: 460px; position: relative; overflow: hidden; }
 .studio-img { position: absolute; inset: 0; background: linear-gradient(135deg, #d4c4a8 0%, #c2ae8c 20%, #a8916a 40%, #8b7252 60%, #705a3e 80%, #5a472e 100%); }
 .studio-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 60%); }
-.studio-accent { position: absolute; top: 28px; right: -1px; width: 4px; height: 80px; background: var(--crimson); }
+.studio-accent { position: absolute; top: 28px; right: -1px; width: 4px; height: 80px; background: var(--sage); }
 .studio-text {}
-.studio-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 700; color: var(--crimson); margin-bottom: 16px; }
+.studio-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 700; color: var(--sage); margin-bottom: 16px; }
 .studio-heading { font-size: clamp(30px, 3.5vw, 44px); font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.1; margin-bottom: 24px; }
 .studio-body { font-size: 14px; color: var(--gray-dark); line-height: 1.8; margin-bottom: 16px; }
 .studio-detail { font-size: 12px; color: var(--gray-dark); line-height: 1.75; margin-bottom: 40px; }
 .studio-detail strong { color: var(--black); font-weight: 600; }
 .btn-studio { display: inline-block; padding: 15px 36px; background: var(--black); color: var(--white); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; text-decoration: none; transition: background 0.22s; }
-.btn-studio:hover { background: var(--crimson); }
+.btn-studio:hover { background: var(--sage); }
 
 /* FOOTER */
 footer { background: var(--black); padding: 68px 80px 40px; }
