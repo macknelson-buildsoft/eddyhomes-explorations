@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eddy Homes — Build Close to What Matters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #2a5885;
+      --navy-dark: #1d3f61;
+      --blue: #2BA6CB;
+      --gray-dark: #5B5B5B;
+      --gray-light: #E4E4E4;
+      --black: #1a1a1a;
+      --white: #fff;
+      --charcoal: #1c1c1c;
+      --off-white: #f5f4f1;
+      --nav-h: 68px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 16px;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-light);
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      gap: 24px;
+    }
+
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .nav-monogram { font-family: 'Pinyon Script', cursive; font-size: 30px; color: var(--black); line-height: 1; }
+    .nav-wordmark { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--black); line-height: 1.3; }
+    .nav-divider { width: 1px; height: 28px; background: var(--gray-light); flex-shrink: 0; }
+
+    .market-toggle { display: flex; border: 1.5px solid var(--gray-light); border-radius: 4px; overflow: hidden; flex-shrink: 0; }
+    .market-btn {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 6px 14px; cursor: pointer; border: none; background: transparent; color: var(--gray-dark); transition: all 0.2s;
+    }
+    .market-btn.active { background: var(--black); color: var(--white); }
+
+    .nav-links { display: flex; align-items: center; gap: 28px; margin-left: auto; list-style: none; }
+    .nav-links a { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--black); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-realtors {
+      font-size: 11px !important; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--navy) !important; border: 1.5px solid var(--navy); border-radius: 3px; padding: 6px 14px; text-decoration: none; transition: all 0.2s !important;
+    }
+    .nav-realtors:hover { background: var(--navy) !important; color: var(--white) !important; }
+    .nav-search { font-size: 18px; cursor: pointer; color: var(--gray-dark); background: none; border: none; padding: 4px; transition: color 0.2s; flex-shrink: 0; }
+    .nav-search:hover { color: var(--black); }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: var(--nav-h);
+      position: relative;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 56px 0;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(120deg, #1d3550 0%, #244a6f 30%, #2a5885 55%, #2f6c96 78%, #2BA6CB 100%);
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 78% 30%, rgba(43,166,203,0.35) 0%, transparent 45%),
+        linear-gradient(to right, rgba(20,30,45,0.72) 0%, rgba(20,30,45,0.25) 65%, transparent 100%);
+    }
+    .hero-content { position: relative; z-index: 2; padding: 0 80px; max-width: 720px; animation: fadeUp 0.9s ease both; }
+    .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 18px; }
+    .hero-headline {
+      font-size: clamp(36px, 5vw, 60px); font-weight: 300; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--white); line-height: 1.08; margin-bottom: 18px;
+    }
+    .hero-headline em { font-style: normal; font-weight: 600; }
+    .hero-sub { font-size: 16px; color: rgba(255,255,255,0.82); font-weight: 300; line-height: 1.6; max-width: 480px; }
+
+    /* ── LOCATOR ── */
+    .locator {
+      background: var(--off-white);
+      padding: 64px 40px 80px;
+    }
+    .locator-header { text-align: center; max-width: 720px; margin: 0 auto 40px; }
+    .locator-header .eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px;
+    }
+    .locator-header h2 {
+      font-size: clamp(26px, 3.5vw, 40px); font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); margin-bottom: 12px;
+    }
+    .locator-header h2 em { font-style: normal; font-weight: 600; }
+    .locator-header p { font-size: 15px; color: var(--gray-dark); }
+
+    /* Landmark controls */
+    .landmark-controls { max-width: 1280px; margin: 0 auto 28px; }
+    .landmark-search-row {
+      display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 20px;
+    }
+    .landmark-search {
+      position: relative; flex: 0 1 460px; min-width: 260px;
+    }
+    .landmark-search input {
+      width: 100%;
+      font-family: 'Nunito Sans', sans-serif; font-size: 15px;
+      padding: 14px 18px 14px 44px;
+      border: 1.5px solid var(--gray-light); border-radius: 4px; background: var(--white); color: var(--black);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .landmark-search input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(42,88,133,0.12); }
+    .landmark-search .search-pin {
+      position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 16px; pointer-events: none; opacity: 0.6;
+    }
+    .landmark-chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .chip {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+      padding: 9px 16px; border: 1.5px solid var(--gray-light); border-radius: 999px; background: var(--white); color: var(--gray-dark);
+      cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 7px;
+    }
+    .chip:hover { border-color: var(--navy); color: var(--navy); }
+    .chip.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+    .chip .chip-ico { font-size: 14px; line-height: 1; }
+
+    /* Locator layout: map + results */
+    .locator-grid {
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.35fr 1fr; gap: 24px; align-items: stretch;
+    }
+
+    /* Map */
+    .map-wrap {
+      position: relative; border-radius: 6px; overflow: hidden; min-height: 520px;
+      background:
+        linear-gradient(135deg, #dfe7e4 0%, #e9efe9 40%, #e4ebef 70%, #dde8ee 100%);
+      border: 1.5px solid var(--gray-light);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    }
+    /* faux terrain: rivers + roads */
+    .map-terrain { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .map-legend {
+      position: absolute; top: 14px; left: 14px; z-index: 6;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(4px);
+      border: 1px solid var(--gray-light); border-radius: 4px; padding: 10px 12px;
+      font-size: 11px; color: var(--gray-dark); display: flex; flex-direction: column; gap: 6px;
+    }
+    .legend-row { display: flex; align-items: center; gap: 8px; }
+    .legend-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+    .legend-dot.landmark { background: var(--blue); box-shadow: 0 0 0 3px rgba(43,166,203,0.25); }
+    .legend-dot.community { background: var(--navy); }
+    .legend-dot.nearest { background: #e07b00; }
+
+    .map-attr {
+      position: absolute; bottom: 10px; right: 12px; z-index: 6;
+      font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(0,0,0,0.35);
+    }
+
+    /* connector lines overlay */
+    .map-lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; }
+
+    /* pins */
+    .pin { position: absolute; transform: translate(-50%, -100%); z-index: 4; cursor: pointer; }
+    .pin-community .pin-body {
+      width: 22px; height: 22px; border-radius: 50% 50% 50% 0;
+      background: var(--navy); transform: rotate(-45deg);
+      border: 2px solid var(--white); box-shadow: 0 3px 8px rgba(0,0,0,0.28);
+      transition: background 0.25s, transform 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pin-community .pin-body::after {
+      content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--white); transform: rotate(45deg);
+    }
+    .pin-community:hover .pin-body,
+    .pin-community.hl .pin-body { transform: rotate(-45deg) scale(1.18); }
+    .pin-community.nearest .pin-body { background: #e07b00; }
+
+    .pin-label {
+      position: absolute; left: 50%; top: 4px; transform: translateX(-50%);
+      white-space: nowrap; background: var(--white); color: var(--black);
+      font-size: 10px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 3px; box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+      opacity: 0; transition: opacity 0.2s; pointer-events: none;
+    }
+    .pin-community:hover .pin-label,
+    .pin-community.hl .pin-label,
+    .pin-community.nearest .pin-label { opacity: 1; }
+
+    .pin-landmark { z-index: 5; }
+    .pin-landmark .lm-ring {
+      width: 30px; height: 30px; border-radius: 50%; background: rgba(43,166,203,0.9);
+      border: 3px solid var(--white); box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      display: flex; align-items: center; justify-content: center; font-size: 15px;
+      position: relative;
+    }
+    .pin-landmark .lm-ring::before {
+      content: ''; position: absolute; inset: -8px; border-radius: 50%;
+      border: 2px solid rgba(43,166,203,0.6); animation: ripple 2s ease-out infinite;
+    }
+    .pin-landmark .lm-label {
+      position: absolute; left: 50%; top: -8px; transform: translate(-50%, -100%);
+      white-space: nowrap; background: var(--blue); color: var(--white);
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 9px; border-radius: 3px; box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+    }
+    .pin-landmark .lm-label::after {
+      content: ''; position: absolute; left: 50%; bottom: -4px; transform: translateX(-50%) rotate(45deg);
+      width: 8px; height: 8px; background: var(--blue);
+    }
+
+    @keyframes ripple {
+      0% { transform: scale(0.8); opacity: 0.9; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    /* Results panel */
+    .results {
+      background: var(--white); border: 1.5px solid var(--gray-light); border-radius: 6px;
+      padding: 24px; display: flex; flex-direction: column; box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    }
+    .results-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+    .results-head h3 { font-size: 16px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); }
+    .results-count { font-size: 12px; color: var(--gray-dark); }
+    .results-sub { font-size: 13px; color: var(--gray-dark); margin-bottom: 18px; }
+    .results-sub strong { color: var(--navy); font-weight: 700; }
+
+    .result-list { display: flex; flex-direction: column; gap: 10px; overflow-y: auto; flex: 1; }
+
+    .result-card {
+      display: flex; align-items: center; gap: 14px; padding: 14px 14px;
+      border: 1.5px solid var(--gray-light); border-radius: 5px; cursor: pointer;
+      text-decoration: none; color: inherit; transition: all 0.2s; background: var(--white);
+    }
+    .result-card:hover { border-color: var(--navy); background: rgba(42,88,133,0.03); transform: translateX(2px); }
+    .result-card.is-nearest { border-color: #e07b00; }
+    .result-rank {
+      flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+      background: var(--off-white); color: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+    }
+    .result-card.is-nearest .result-rank { background: rgba(224,123,0,0.12); color: #b86400; }
+    .result-info { flex: 1; min-width: 0; }
+    .result-name { font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--black); margin-bottom: 2px; }
+    .result-meta { font-size: 12px; color: var(--gray-dark); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .result-drive {
+      flex-shrink: 0; text-align: right;
+    }
+    .result-drive .rd-time { font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.1; }
+    .result-drive .rd-dist { font-size: 11px; color: var(--gray-dark); }
+    .result-card.is-nearest .result-drive .rd-time { color: #b86400; }
+
+    .results-cta { margin-top: 18px; }
+    .btn-primary {
+      display: inline-block; width: 100%; text-align: center;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 14px 32px; background: var(--navy); color: var(--white); text-decoration: none; border-radius: 3px;
+      transition: background 0.2s, transform 0.15s; cursor: pointer; border: none;
+    }
+    .btn-primary:hover { background: var(--navy-dark); transform: translateY(-1px); }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      max-width: 1000px; margin: 0 auto; padding: 72px 40px 0;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: center;
+    }
+    .how-step .how-num {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.16em; color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .how-step h4 { font-size: 16px; font-weight: 700; letter-spacing: 0.04em; color: var(--black); margin-bottom: 8px; }
+    .how-step p { font-size: 14px; color: var(--gray-dark); line-height: 1.6; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar { background: var(--black); padding: 36px 40px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 80px; }
+    .trust-item { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 12px 40px; border-right: 1px solid rgba(255,255,255,0.12); }
+    .trust-item:last-child { border-right: none; }
+    .trust-num { font-size: 28px; font-weight: 300; letter-spacing: 0.06em; color: var(--white); line-height: 1; margin-bottom: 4px; }
+    .trust-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black); padding: 64px 40px 40px; }
+    .footer-top { display: grid; grid-template-columns: 220px 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; }
+    .footer-brand .footer-monogram { font-family: 'Pinyon Script', cursive; font-size: 48px; color: var(--white); line-height: 1; margin-bottom: 6px; }
+    .footer-brand .footer-wordmark { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
+    .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.45); font-style: italic; margin-bottom: 20px; font-weight: 300; }
+    .footer-realtor-cta { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 10px 18px; background: var(--navy); color: var(--white); text-decoration: none; border-radius: 3px; margin-bottom: 16px; transition: background 0.2s; }
+    .footer-realtor-cta:hover { background: var(--navy-dark); }
+    .footer-col h4 { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col a { font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-col .footer-market-label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-top: 14px; margin-bottom: 8px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-legal { font-size: 11px; color: rgba(255,255,255,0.3); }
+    .footer-phone { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; font-weight: 600; letter-spacing: 0.04em; }
+    .footer-phone:hover { color: var(--white); }
+    .footer-social { display: flex; gap: 14px; }
+    .social-icon { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: all 0.2s; }
+    .social-icon:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1000px) {
+      .locator-grid { grid-template-columns: 1fr; }
+      .map-wrap { min-height: 420px; }
+      .how { grid-template-columns: 1fr; gap: 28px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; gap: 12px; }
+      .nav-links { display: none; }
+      .hero-content { padding: 0 24px; }
+      .locator { padding: 48px 20px 56px; }
+      .trust-bar { padding: 28px 20px; }
+      .trust-item { padding: 10px 20px; }
+      footer { padding: 48px 20px 32px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="nav-monogram">𝓔𝓗</span>
+    <span class="nav-wordmark">Eddy<br>Homes</span>
+  </a>
+  <div class="nav-divider"></div>
+  <div class="market-toggle">
+    <button class="market-btn active" onclick="setMarket('pittsburgh', this)">Pittsburgh</button>
+    <button class="market-btn" onclick="setMarket('philadelphia', this)">Philadelphia</button>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Find a Home</a></li>
+    <li><a href="#">Floor Plans</a></li>
+    <li><a href="#">EH Studio</a></li>
+    <li><a href="#">Why Eddy</a></li>
+    <li><a href="#">Resources</a></li>
+    <li><a class="nav-realtors" href="#">For Realtors</a></li>
+  </ul>
+  <button class="nav-search" aria-label="Search">&#9906;</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Family-owned since 1971 &nbsp;·&nbsp; Pittsburgh &amp; Philadelphia</p>
+    <h1 class="hero-headline">Build close to<br><em>what matters.</em></h1>
+    <p class="hero-sub">Your office. Their school. Grandma's house. Tell us the place your life revolves around — we'll show you the Eddy Homes communities built closest to it.</p>
+  </div>
+</section>
+
+<!-- LOCATOR -->
+<section class="locator" id="locator">
+  <div class="locator-header">
+    <p class="eyebrow">The Landmark Locator</p>
+    <h2>Start with a <em>place you love</em></h2>
+    <p>Pick a landmark or search for your own. We'll rank every community by how close it is.</p>
+  </div>
+
+  <div class="landmark-controls">
+    <div class="landmark-search-row">
+      <div class="landmark-search">
+        <span class="search-pin">&#128205;</span>
+        <input id="landmarkInput" type="text" list="landmarkList" placeholder="Search a place — e.g. UPMC, CMU, the airport…" autocomplete="off">
+        <datalist id="landmarkList"></datalist>
+      </div>
+    </div>
+    <div class="landmark-chips" id="landmarkChips"></div>
+  </div>
+
+  <div class="locator-grid">
+    <!-- MAP -->
+    <div class="map-wrap" id="mapWrap">
+      <svg class="map-terrain" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <!-- rivers -->
+        <path d="M 0 60 Q 30 58 48 66 Q 60 71 62 88 L 62 100" fill="none" stroke="#bcd3de" stroke-width="2.4" opacity="0.8"/>
+        <path d="M 100 46 Q 74 50 62 60 Q 55 65 48 66" fill="none" stroke="#bcd3de" stroke-width="2.2" opacity="0.8"/>
+        <!-- roads -->
+        <path d="M 8 12 L 92 30" stroke="#ffffff" stroke-width="1.4" opacity="0.7"/>
+        <path d="M 20 96 L 55 20 L 90 8" stroke="#ffffff" stroke-width="1.2" opacity="0.6"/>
+        <path d="M 4 40 L 96 78" stroke="#ffffff" stroke-width="1.2" opacity="0.6"/>
+        <!-- greens -->
+        <circle cx="80" cy="82" r="9" fill="#cfe0cf" opacity="0.6"/>
+        <circle cx="16" cy="76" r="7" fill="#cfe0cf" opacity="0.6"/>
+        <circle cx="30" cy="30" r="6" fill="#cfe0cf" opacity="0.6"/>
+      </svg>
+      <svg class="map-lines" id="mapLines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+
+      <div class="map-legend">
+        <div class="legend-row"><span class="legend-dot landmark"></span> Your landmark</div>
+        <div class="legend-row"><span class="legend-dot nearest"></span> Closest community</div>
+        <div class="legend-row"><span class="legend-dot community"></span> Eddy community</div>
+      </div>
+      <div class="map-attr">Greater Pittsburgh · illustrative map</div>
+      <!-- pins injected here -->
+    </div>
+
+    <!-- RESULTS -->
+    <div class="results">
+      <div class="results-head">
+        <h3>Closest Communities</h3>
+        <span class="results-count" id="resultsCount"></span>
+      </div>
+      <p class="results-sub">Ranked by drive time to <strong id="activeLandmark">Downtown Pittsburgh</strong></p>
+      <div class="result-list" id="resultList"></div>
+      <div class="results-cta">
+        <a href="#" class="btn-primary" id="buildCta">Build near Downtown Pittsburgh →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how">
+    <div class="how-step">
+      <div class="how-num">STEP 01</div>
+      <h4>Name your anchor</h4>
+      <p>The place your daily life orbits — work, school, family, or your favorite trailhead.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">STEP 02</div>
+      <h4>See what's closest</h4>
+      <p>Every Eddy community re-ranks instantly by drive time, so the shortest commute rises to the top.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">STEP 03</div>
+      <h4>Build where it fits</h4>
+      <p>Choose a homesite and personalize your floor plan with EH Studio — close to what matters most.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-num">50+</div><div class="trust-label">Years Building</div></div>
+  <div class="trust-item"><div class="trust-num">12</div><div class="trust-label">Active Communities</div></div>
+  <div class="trust-item"><div class="trust-num">6×</div><div class="trust-label">Pittsburgh Mag Best Builder</div></div>
+  <div class="trust-item"><div class="trust-num">✓</div><div class="trust-label">GuildQuality Verified</div></div>
+  <div class="trust-item"><div class="trust-num">#22</div><div class="trust-label">Pittsburgh Fast 50</div></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-monogram">𝓔𝓗</div>
+      <div class="footer-wordmark">Eddy Homes</div>
+      <p class="footer-tagline">Life. Well Built.</p>
+      <a href="#" class="footer-realtor-cta">Realtor Portal →</a>
+      <br>
+      <a href="#" style="font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;">Homeowner Portal →</a>
+    </div>
+    <div class="footer-col">
+      <h4>Pittsburgh</h4>
+      <div class="footer-market-label">Communities</div>
+      <ul>
+        <li><a href="#">Woodbriar — Peters Twp</a></li>
+        <li><a href="#">Autumn Grove — North Allegheny</a></li>
+        <li><a href="#">Spring Way — Seneca Valley</a></li>
+        <li><a href="#">Highland Reserve — Mt. Lebanon</a></li>
+        <li><a href="#">View All Pittsburgh</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Philadelphia</h4>
+      <div class="footer-market-label">Communities</div>
+      <ul>
+        <li><a href="#">Creekside at Malvern — Great Valley</a></li>
+        <li><a href="#">Fairfield Estates — West Chester</a></li>
+        <li><a href="#">The Reserve at Devon — Tredyffrin</a></li>
+        <li><a href="#">View All Philadelphia</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Find a Home</a></li>
+        <li><a href="#">Floor Plans</a></li>
+        <li><a href="#">EH Studio</a></li>
+        <li><a href="#">Build on Your Lot</a></li>
+        <li><a href="#">Why Eddy Homes</a></li>
+        <li><a href="#">Resources &amp; Guides</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-legal">&copy; 2026 Eddy Homes. All rights reserved. &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; Terms of Use</p>
+    <a href="tel:8888053339" class="footer-phone">888-805-EDDY</a>
+    <div class="footer-social">
+      <a href="#" class="social-icon" aria-label="Instagram">&#9678;</a>
+      <a href="#" class="social-icon" aria-label="Facebook">f</a>
+      <a href="#" class="social-icon" aria-label="Pinterest">P</a>
+      <a href="#" class="social-icon" aria-label="YouTube">▶</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function setMarket(market, btn) {
+    document.querySelectorAll('.market-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  /* ── DATA ── coordinates on an illustrative 0–100 map of Greater Pittsburgh ── */
+  const LANDMARKS = [
+    { id: 'downtown', name: 'Downtown Pittsburgh', icon: '🏙️', x: 50, y: 62 },
+    { id: 'airport',  name: 'Pittsburgh Int’l Airport', icon: '✈️', x: 16, y: 58 },
+    { id: 'oakland',  name: 'UPMC / Oakland Hospitals', icon: '🏥', x: 58, y: 58 },
+    { id: 'cmu',      name: 'Carnegie Mellon / Pitt', icon: '🎓', x: 60, y: 56 },
+    { id: 'cranberry',name: 'Cranberry Town Center', icon: '🛍️', x: 40, y: 16 },
+    { id: 'southside',name: 'South Hills Village', icon: '🛒', x: 44, y: 74 },
+  ];
+
+  const COMMUNITIES = [
+    { id: 'woodbriar', name: 'Woodbriar', town: 'Peters Township', district: 'Peters Township SD', priceFrom: '$824K', x: 46, y: 86 },
+    { id: 'autumn',    name: 'Autumn Grove', town: 'Franklin Park', district: 'North Allegheny SD', priceFrom: '$742K', x: 50, y: 30 },
+    { id: 'springway', name: 'Spring Way', town: 'Adams Twp', district: 'Seneca Valley SD', priceFrom: '$698K', x: 38, y: 20 },
+    { id: 'highland',  name: 'Highland Reserve', town: 'Mt. Lebanon', district: 'Mt. Lebanon SD', priceFrom: '$915K', x: 42, y: 70 },
+    { id: 'foxchapel', name: 'Fox Chapel Ridge', town: 'Fox Chapel', district: 'Fox Chapel Area SD', priceFrom: '$1.05M', x: 66, y: 44 },
+    { id: 'sewickley', name: 'Sewickley Bluffs', town: 'Sewickley', district: 'Quaker Valley SD', priceFrom: '$889K', x: 28, y: 46 },
+  ];
+
+  const mapWrap   = document.getElementById('mapWrap');
+  const mapLines  = document.getElementById('mapLines');
+  const chipsEl   = document.getElementById('landmarkChips');
+  const listEl    = document.getElementById('resultList');
+  const inputEl   = document.getElementById('landmarkInput');
+  const datalist  = document.getElementById('landmarkList');
+  const countEl   = document.getElementById('resultsCount');
+  const activeEl  = document.getElementById('activeLandmark');
+  const buildCta  = document.getElementById('buildCta');
+
+  let activeLandmark = LANDMARKS[0];
+
+  /* distance helpers: convert map units → illustrative miles / minutes */
+  function distUnits(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+  function toMiles(u) { return u * 0.55; }
+  function toMinutes(mi) { return Math.max(6, Math.round(mi * 2.0 + 5)); }
+
+  /* ── build static UI once ── */
+  function buildChips() {
+    LANDMARKS.forEach((lm, i) => {
+      const b = document.createElement('button');
+      b.className = 'chip' + (i === 0 ? ' active' : '');
+      b.dataset.id = lm.id;
+      b.innerHTML = `<span class="chip-ico">${lm.icon}</span> ${lm.name}`;
+      b.addEventListener('click', () => selectLandmark(lm));
+      chipsEl.appendChild(b);
+    });
+  }
+
+  function buildDatalist() {
+    LANDMARKS.forEach(lm => {
+      const o = document.createElement('option');
+      o.value = lm.name;
+      datalist.appendChild(o);
+    });
+  }
+
+  function buildCommunityPins() {
+    COMMUNITIES.forEach(c => {
+      const pin = document.createElement('div');
+      pin.className = 'pin pin-community';
+      pin.id = 'pin-' + c.id;
+      pin.style.left = c.x + '%';
+      pin.style.top = c.y + '%';
+      pin.innerHTML = `<span class="pin-label">${c.name}</span><span class="pin-body"></span>`;
+      pin.addEventListener('mouseenter', () => highlightCard(c.id, true));
+      pin.addEventListener('mouseleave', () => highlightCard(c.id, false));
+      mapWrap.appendChild(pin);
+    });
+  }
+
+  function buildLandmarkPin() {
+    const pin = document.createElement('div');
+    pin.className = 'pin pin-landmark';
+    pin.id = 'landmarkPin';
+    pin.innerHTML = `<span class="lm-label" id="lmLabel"></span><span class="lm-ring" id="lmIcon"></span>`;
+    mapWrap.appendChild(pin);
+  }
+
+  /* ── render on selection ── */
+  function render() {
+    // ranked list
+    const ranked = COMMUNITIES
+      .map(c => {
+        const mi = toMiles(distUnits(activeLandmark, c));
+        return { ...c, miles: mi, minutes: toMinutes(mi) };
+      })
+      .sort((a, b) => a.minutes - b.minutes);
+
+    // landmark pin
+    const lp = document.getElementById('landmarkPin');
+    lp.style.left = activeLandmark.x + '%';
+    lp.style.top = activeLandmark.y + '%';
+    document.getElementById('lmIcon').textContent = activeLandmark.icon;
+    document.getElementById('lmLabel').textContent = activeLandmark.name;
+
+    // labels
+    activeEl.textContent = activeLandmark.name;
+    countEl.textContent = ranked.length + ' communities';
+    buildCta.textContent = 'Build near ' + activeLandmark.name + ' →';
+
+    // pins: mark nearest
+    COMMUNITIES.forEach(c => document.getElementById('pin-' + c.id).classList.remove('nearest'));
+    document.getElementById('pin-' + ranked[0].id).classList.add('nearest');
+
+    // connector lines to top 3
+    let lines = '';
+    ranked.slice(0, 3).forEach((c, i) => {
+      const color = i === 0 ? '#e07b00' : '#2a5885';
+      const w = i === 0 ? 0.9 : 0.55;
+      const op = i === 0 ? 0.95 : 0.5;
+      lines += `<line x1="${activeLandmark.x}" y1="${activeLandmark.y}" x2="${c.x}" y2="${c.y}" stroke="${color}" stroke-width="${w}" stroke-dasharray="2 1.6" opacity="${op}"/>`;
+    });
+    mapLines.innerHTML = lines;
+
+    // results list
+    listEl.innerHTML = '';
+    ranked.forEach((c, i) => {
+      const a = document.createElement('a');
+      a.href = '#';
+      a.className = 'result-card' + (i === 0 ? ' is-nearest' : '');
+      a.id = 'card-' + c.id;
+      a.innerHTML = `
+        <span class="result-rank">${i + 1}</span>
+        <span class="result-info">
+          <span class="result-name">${c.name}</span>
+          <span class="result-meta">${c.town} · ${c.district} · from ${c.priceFrom}</span>
+        </span>
+        <span class="result-drive">
+          <span class="rd-time">${c.minutes} min</span>
+          <span class="rd-dist">${c.miles.toFixed(1)} mi</span>
+        </span>`;
+      a.addEventListener('mouseenter', () => highlightPin(c.id, true));
+      a.addEventListener('mouseleave', () => highlightPin(c.id, false));
+      listEl.appendChild(a);
+    });
+  }
+
+  function selectLandmark(lm) {
+    activeLandmark = lm;
+    document.querySelectorAll('.chip').forEach(ch => ch.classList.toggle('active', ch.dataset.id === lm.id));
+    inputEl.value = '';
+    render();
+  }
+
+  /* hover sync */
+  function highlightPin(id, on) {
+    const pin = document.getElementById('pin-' + id);
+    if (pin) pin.classList.toggle('hl', on);
+  }
+  function highlightCard(id, on) {
+    const card = document.getElementById('card-' + id);
+    if (card) card.style.outline = on ? '2px solid var(--navy)' : 'none';
+  }
+
+  /* search input → match landmark by name */
+  inputEl.addEventListener('change', () => {
+    const val = inputEl.value.trim().toLowerCase();
+    const match = LANDMARKS.find(lm => lm.name.toLowerCase() === val)
+      || LANDMARKS.find(lm => lm.name.toLowerCase().includes(val) && val.length > 2);
+    if (match) selectLandmark(match);
+  });
+
+  /* init */
+  buildChips();
+  buildDatalist();
+  buildCommunityPins();
+  buildLandmarkPin();
+  render();
+</script>
+
+</body>
+</html>
